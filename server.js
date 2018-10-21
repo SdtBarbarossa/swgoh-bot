@@ -5,8 +5,8 @@ const express = require('express');
 
 // create LINE SDK config from env variables
 const config = {
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-    channelSecret: process.env.CHANNEL_SECRET,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || 'YnTmZ13cAk6+NRZX3d2liNemHiyd3MXnWpDdyXAGU/E0mwg1BOAxFkHFmvKAeJMgXVFQLIupWkluUeuV7Ra12kLBr0eSYNzgn3NMzq5qt1ZlqezbPjisY7EQDFMevMpugqRI5HZZpXuvmEUbBrVTjQdB04t89/1O/w1cDnyilFU=',
+    channelSecret: process.env.CHANNEL_SECRET || '6880dcbfb8fb481c0ed3a0f7f89f738e',
 };
 
 // create LINE SDK client
@@ -39,7 +39,7 @@ function handleEvent(event) {
     const echo = { type: 'text', text: event.message.text };
 
     // use reply API
-    return client.replyMessage(event.replyToken, echo + 'midi-test');
+    return client.replyMessage(event.replyToken, echo);
 }
 
 // listen on port
