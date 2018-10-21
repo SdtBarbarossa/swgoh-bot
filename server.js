@@ -53,7 +53,7 @@ async function handleEvent(event) {
                     var payload = {
                         "language": "eng_us"
                     };
-                    return await getEvents(event.replyToken);
+                    message = await getEvents(event.replyToken);
                 }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
@@ -94,11 +94,7 @@ async function getEvents(token) {
 
     console.log("out of loop");
 
-    // create a echoing text message
-    const echo = { type: 'text', text: message };
-
-    // use reply API
-    return client.replyMessage(token, echo);
+    return message;
 
 }
 
