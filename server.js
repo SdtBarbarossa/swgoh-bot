@@ -5,9 +5,15 @@ const express = require('express');
 
 // create LINE SDK config from env variables
 const config = {
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || 'YnTmZ13cAk6+NRZX3d2liNemHiyd3MXnWpDdyXAGU/E0mwg1BOAxFkHFmvKAeJMgXVFQLIupWkluUeuV7Ra12kLBr0eSYNzgn3NMzq5qt1ZlqezbPjisY7EQDFMevMpugqRI5HZZpXuvmEUbBrVTjQdB04t89/1O/w1cDnyilFU=',
-    channelSecret: process.env.CHANNEL_SECRET || '6880dcbfb8fb481c0ed3a0f7f89f738e',
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+    channelSecret: process.env.CHANNEL_SECRET,
 };
+
+const ApiSwgohHelp = require('api-swgoh-help');
+const swapi = new ApiSwgohHelp({
+    "username": process.env.API_USERNAME,
+    "password": process.env.API_PASSWORD
+});
 
 // create LINE SDK client
 const client = new line.Client(config);
@@ -35,11 +41,31 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
 
+    var message = event.message.text;
+
+    if (event.message.text.startsWith("#")) {
+        var eventWithoutStart = event.message.text.replace("#", "");
+
+        switch (eventWithoutStart) {
+            case "Events":
+                message = "midi test events";
+                break;
+            case "Raub":
+                message = "midi test raub";
+                break;
+        }
+    }
+
+    return sendMessage(message, event.replyToken);
+}
+
+function sendMessage(message, token) {
+
     // create a echoing text message
-    const echo = { type: 'text', text: event.message.text };
+    const echo = { type: 'text', text: message };
 
     // use reply API
-    return client.replyMessage(event.replyToken, echo);
+    return client.replyMessage(token, echo);
 }
 
 // listen on port

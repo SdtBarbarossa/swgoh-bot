@@ -1,6 +1,6 @@
 {
   "name": "sdtbarbarossa-bot",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "swgoh-helper line bot",
   "main": "server.js",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@line/bot-sdk": "^5.0.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "api-swgoh-help": "^3.1.4"
   }
 }
