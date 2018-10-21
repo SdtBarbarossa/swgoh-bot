@@ -41,7 +41,7 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
 
-    var message = event.message.text;
+    var message = "";
 
     if (event.message.text.startsWith("#")) {
         var words = event.message.text.split(" ");
@@ -63,7 +63,14 @@ function handleEvent(event) {
             case "raub":
                 message = "midi test raub";
                 break;
+            case "regeln":
+                message = "- regel 1 \n\r- regel 2";
+                break;
         }
+    }
+
+    if (message == "") {
+        return;
     }
 
     return sendMessage(message, event.replyToken);
