@@ -44,14 +44,15 @@ function handleEvent(event) {
     var message = event.message.text;
 
     if (event.message.text.startsWith("#")) {
-        var words = event.message.text.splie(" ");
+        var words = event.message.text.split(" ");
         var eventWithoutStart = words[0].replace("#", "");
 
-        switch (eventWithoutStart) {
-            case "Events":
-                message = "midi test events";
+        switch (eventWithoutStart.toLowerCase()) {
+            case "events":
+                const events = swapi.fetchEvents('ger_de');
+                message = events;
                 break;
-            case "Raub":
+            case "raub":
                 message = "midi test raub";
                 break;
         }
