@@ -50,17 +50,25 @@ async function handleEvent(event) {
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
                 try {
-                    var payload = {
-                        "language": "eng_us"
-                    };
                     message = await getEvents();
+                    if (message == "") {
+                        message = "keine events gefunden";
+                    }
                 }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
                 }
                 break;
             case "raub":
-                message = "midi test raub";
+                try {
+                    message = await getRaub();
+                    if (message == "") {
+                        message = "keinen Raub gefunden";
+                    }
+                }
+                catch (err) {
+                    message = "konnte die eventdaten nicht lesen";
+                }
                 break;
             case "regeln":
                 message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache der eigenen GM einzusetzen \n\r- In den TB und TW ist den Befehlen der Offizieren stets folge zu leisten \n\r- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer moeglich";
@@ -90,9 +98,26 @@ async function getEvents() {
         if (!events.events[i].id.includes('shipevent_') && !events.events[i].id.includes('restrictedmodbattle_') && !events.events[i].id.includes('challenge_') )
             message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime).toString("dd.MM.yyy HH:mm") + "UTC\n\r\n\r";
     }
+    
+    return message;
 
-    console.log("out of loop");
-    console.log(message);
+}
+
+async function getRaub() {
+
+    var payload = {
+        "language": "GER_DE"
+    };
+    let events = await swapi.fetchEvents(payload);
+    console.log(events);
+
+    var message = "";
+    console.log("length ist:");
+    console.log(events.events.length);
+    for (var i = 0; i < events.events.length; i++) {
+        if (events.events[i].id == 'EVENT_TRAINING_DROID_SMUGGLING' || events.events[i].id == 'EVENT_CREDIT_HEIST_GETAWAY_V2' || events.events[i].id == 'EVENT_RESOURCE_SMUGGLERS_RUN' || events.events[i].id == 'EVENT_RESOURCE_CONTRABAND_CARGO')
+            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime).toString("dd.MM.yyy HH:mm") + "UTC\n\r\n\r";
+    }
 
     return message;
 
