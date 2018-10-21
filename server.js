@@ -78,7 +78,7 @@ async function handleEvent(event) {
 async function getEvents() {
 
     var payload = {
-        "language": "eng_us"
+        "language": "GER_DE"
     };
     let events = await swapi.fetchEvents(payload);
     console.log(events);
