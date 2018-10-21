@@ -44,7 +44,8 @@ function handleEvent(event) {
     var message = event.message.text;
 
     if (event.message.text.startsWith("#")) {
-        var eventWithoutStart = event.message.text.replace("#", "");
+        var words = event.message.text.splie(" ");
+        var eventWithoutStart = words[0].replace("#", "");
 
         switch (eventWithoutStart) {
             case "Events":
