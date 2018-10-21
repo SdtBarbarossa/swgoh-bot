@@ -53,7 +53,7 @@ function handleEvent(event) {
                     var payload = {
                         "language": "eng_us"
                     };
-                    let events = await swapi.fetchEvents(payload);
+                    let events = swapi.fetchEvents(payload);
                     console.log(events);
 
                     message = events;
