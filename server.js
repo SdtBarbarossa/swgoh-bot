@@ -86,7 +86,7 @@ async function getEvents() {
     var message = "";
     console.log("length ist:");
     console.log(events.events.length);
-    for (var i = 0; i < events.events.length; i++) {
+    for (var i = 0; i < 3; i++) {
         message = message + "\n\rEvent: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime);
 
         console.log(i);
