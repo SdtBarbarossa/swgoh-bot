@@ -88,7 +88,7 @@ async function getEvents() {
     console.log(events.events.length);
     for (var i = 0; i < events.events.length; i++) {
         if (!events.events[i].id.includes('shipevent_') && !events.events[i].id.includes('restrictedmodbattle_') && !events.events[i].id.includes('challenge_') )
-            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime + "\n\r\n\r");
+            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime).toString("dd.MM.yyy HH:mm") + "UTC\n\r\n\r";
     }
 
     console.log("out of loop");
