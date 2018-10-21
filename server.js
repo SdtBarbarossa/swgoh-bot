@@ -98,7 +98,7 @@ async function getEvents(token) {
     const echo = { type: 'text', text: message };
 
     // use reply API
-    return client.replyMessage(token, echo);
+    client.replyMessage(token, echo);
 
 }
 
