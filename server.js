@@ -63,7 +63,7 @@ async function handleEvent(event) {
                 message = "midi test raub";
                 break;
             case "regeln":
-                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache der eigenen GM einzusetzen \n\r- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer moeglich";
+                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache der eigenen GM einzusetzen \n\r- In den TB und TW ist den Befehlen der Offizieren stets folge zu leisten \n\r- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer moeglich";
                 break;
         }
     }
@@ -87,7 +87,7 @@ async function getEvents() {
     console.log("length ist:");
     console.log(events.events.length);
     for (var i = 0; i < events.events.length; i++) {
-        message = message + "\n\rEvent: " + events.events[i].nameKey + " Start: " + new Date(events.events[i].instanceList[0].startTime);
+        message = message + "\n\rEvent: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + new Date(events.events[i].instanceList[0].startTime);
 
         console.log(i);
     }
