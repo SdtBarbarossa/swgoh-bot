@@ -50,10 +50,12 @@ function handleEvent(event) {
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
                 try {
-                    var payloud = {
+                    var payload = {
                         "language": "eng_us"
                     };
-                    const events = swapi.fetchEvents(payloud);
+                    let events = await swapi.fetchEvents(payload);
+                    console.log(events);
+
                     message = events;
                 }
                 catch (err) {
@@ -64,7 +66,7 @@ function handleEvent(event) {
                 message = "midi test raub";
                 break;
             case "regeln":
-                message = "- regel 1 \n\r- regel 2";
+                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache \n\r- Nach 7 Tagen inaktivität ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss über Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zuminde3st über eine dritte Perosn die über Line verfügt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer möglich";
                 break;
         }
     }
