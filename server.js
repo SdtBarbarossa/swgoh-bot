@@ -49,8 +49,16 @@ function handleEvent(event) {
 
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
-                const events = swapi.fetchEvents('ger_de');
-                message = events;
+                try {
+                    var payloud = {
+                        "language": "eng_us"
+                    };
+                    const events = swapi.fetchEvents(payloud);
+                    message = events;
+                }
+                catch (err) {
+                    message = "konnte die eventdaten nicht lesen";
+                }
                 break;
             case "raub":
                 message = "midi test raub";
