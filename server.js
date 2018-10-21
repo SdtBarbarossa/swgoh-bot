@@ -53,7 +53,7 @@ async function handleEvent(event) {
                     var payload = {
                         "language": "eng_us"
                     };
-                    message = await getEvents(event.replyToken);
+                    message = await getEvents();
                 }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
@@ -75,7 +75,7 @@ async function handleEvent(event) {
     return sendMessage(message, event.replyToken);
 }
 
-async function getEvents(token) {
+async function getEvents() {
 
     var payload = {
         "language": "eng_us"
