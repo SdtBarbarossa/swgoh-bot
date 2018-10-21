@@ -53,10 +53,7 @@ function handleEvent(event) {
                     var payload = {
                         "language": "eng_us"
                     };
-                    let events = swapi.fetchEvents(payload);
-                    console.log(events);
-
-                    message = events;
+                    getEvents(event.replyToken);
                 }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
@@ -66,7 +63,7 @@ function handleEvent(event) {
                 message = "midi test raub";
                 break;
             case "regeln":
-                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache \n\r- Nach 7 Tagen inaktivität ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss über Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zuminde3st über eine dritte Perosn die über Line verfügt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer möglich";
+                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache \n\r- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer moeglich";
                 break;
         }
     }
@@ -76,6 +73,29 @@ function handleEvent(event) {
     }
 
     return sendMessage(message, event.replyToken);
+}
+
+async function getEvents(token) {
+
+    var payload = {
+        "language": "eng_us"
+    };
+    let events = await swapi.fetchEvents(payload);
+    console.log(events);
+
+    var message = "";
+    for (var i = 0; i < events.events.length; i++) {
+        message += "\n\rEvent: " + events.events[i].nameKey + " Start: " + new Date(events.events[i].instanceList[0].startTime);
+    }
+
+    message = events;
+
+    // create a echoing text message
+    const echo = { type: 'text', text: message };
+
+    // use reply API
+    return client.replyMessage(token, echo);
+
 }
 
 function sendMessage(message, token) {
