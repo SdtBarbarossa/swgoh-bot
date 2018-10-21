@@ -35,7 +35,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 // event handler
-function handleEvent(event) {
+async function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
         // ignore non-text-message event
         return Promise.resolve(null);
@@ -53,7 +53,7 @@ function handleEvent(event) {
                     var payload = {
                         "language": "eng_us"
                     };
-                    getEvents(event.replyToken);
+                    return await getEvents(event.replyToken);
                 }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
@@ -98,7 +98,7 @@ async function getEvents(token) {
     const echo = { type: 'text', text: message };
 
     // use reply API
-    client.replyMessage(token, echo);
+    return client.replyMessage(token, echo);
 
 }
 
