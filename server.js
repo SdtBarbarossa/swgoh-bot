@@ -87,7 +87,9 @@ async function getEvents(token) {
     console.log("length ist:");
     console.log(events.events.length);
     for (var i = 0; i < events.events.length; i++) {
-        message += "\n\rEvent: " + events.events[i].nameKey + " Start: " + new Date(events.events[i].instanceList[0].startTime);
+        message = message + "\n\rEvent: " + events.events[i].nameKey + " Start: " + new Date(events.events[i].instanceList[0].startTime);
+
+        console.log(i);
     }
 
     message = events;
