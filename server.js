@@ -92,7 +92,7 @@ async function getEvents(token) {
         console.log(i);
     }
 
-    message = events;
+    console.log("out of loop");
 
     // create a echoing text message
     const echo = { type: 'text', text: message };
