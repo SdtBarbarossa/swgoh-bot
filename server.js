@@ -44,11 +44,6 @@ async function handleEvent(event) {
 
     var message = "";
 
-    var random = Math.floor((Math.random() * 100) + 1);
-    
-    if(random >  68)
-    message = "General Grievous";
-    
     if (event.message.text.startsWith("#")) {
         var words = event.message.text.split(" ");
         var eventWithoutStart = words[0].replace("#", "");
