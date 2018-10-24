@@ -42,8 +42,10 @@ async function handleEvent(event) {
         return Promise.resolve(null);
     }
 
-    var message = "General Grievous";
+    var message = "";
 
+    message = "General Grievous";
+    
     if (event.message.text.startsWith("#")) {
         var words = event.message.text.split(" ");
         var eventWithoutStart = words[0].replace("#", "");
