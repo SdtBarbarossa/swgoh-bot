@@ -107,7 +107,8 @@ async function handleEvent(event) {
 		updateGuild();
                 if(words.length > 1)
                 {
-                message = words[1] + "allycode is: " + getMemberAllycodeByName(words[1]);
+		let foundAllyCode = await getMemberAllycodeByName(words[1]);
+                message = words[1] + "allycode is: " + foundAllyCode;
                 }
                 else
                 {
