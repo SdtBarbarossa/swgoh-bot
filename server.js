@@ -104,7 +104,12 @@ async function handleEvent(event) {
                 + "\r\nM2 - max 65k";
                 break;
             case "allycode":
-		guild = await updateGuild();
+		let updatedGuild = await updateGuild();
+			
+			if(!guild){
+				return updatedGuild;
+			}
+			
                 if(words.length > 1)
                 {
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
@@ -114,7 +119,7 @@ async function handleEvent(event) {
                 {
                     message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
                 }
-                break;
+            break;
         }
     }
 
@@ -170,7 +175,15 @@ async function getRaub() {
 async function updateGuild()
 {
     let guildNew = await client.swapi.guild(allycode, "GER_DE");
-	return guildNew;
+	
+	if( !guildNew ) { 
+	        let error = "I could not find a guild for this allycode. Please check your settings";
+	        return error;
+    	}
+	
+	guild = guildNew;
+	
+	return "guild updated sucessfully";
 }
 
 async function getMemberAllycodeByName(membername) {
