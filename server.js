@@ -199,7 +199,7 @@ async function getMemberAllycodeByName(membername) {
     }
     
     let memberNow = guild.roster.find(function(mem) {
-            return mem.Name.toLowerCase() == membername.toLowerCase();
+            return mem.name.toLowerCase() == membername.toLowerCase();
         	}
 	);
     
