@@ -174,7 +174,7 @@ async function getRaub() {
 
 async function updateGuild()
 {
-    let guildNew = await swapi.guild(allycode, "GER_DE");
+    let guildNew = await swapi.fetchGuild(allycode);
 	
 	if( !guildNew ) { 
 	        let error = "I could not find a guild for this allycode. Please check your settings";
