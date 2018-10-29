@@ -102,6 +102,16 @@ async function handleEvent(event) {
                 + "\r\nM1 - 65k-75k"
                 + "\r\nM2 - max 65k";
                 break;
+            case "allycode":
+                if(words.length > 1)
+                {
+                message = words[1] + "allycode is: " + getMemberAllycodeByName(words[1]);
+                }
+                else
+                {
+                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
+                }
+                break;
         }
     }
 
@@ -149,6 +159,25 @@ async function getRaub() {
         if (events.events[i].id == 'EVENT_TRAINING_DROID_SMUGGLING' || events.events[i].id == 'EVENT_CREDIT_HEIST_GETAWAY_V2' || events.events[i].id == 'EVENT_RESOURCE_SMUGGLERS_RUN' || events.events[i].id == 'EVENT_RESOURCE_CONTRABAND_CARGO')
             message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\r\n\r";
     }
+
+    return message;
+
+}
+
+async function getMemberAllycodeByName(membername) {
+
+    let guild = await client.swapi.guild(allycode, "GER_DE");
+    
+    if( !guild ) { 
+	        let error = "I could not find a guild for this allycode. Please check your settings";
+	        return error;
+    }
+    
+    let allycode = guild.roster.find(function(mem) {
+            return mem.Name == membername;
+        });
+    
+    var message = allycode.allyCode;
 
     return message;
 
