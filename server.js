@@ -113,7 +113,7 @@ async function handleEvent(event) {
                 if(words.length > 1)
                 {
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
-                message = words[1] + "allycode is: " + foundAllyCode;
+                message = words[1] + " allycode is: " + foundAllyCode;
                 }
                 else
                 {
