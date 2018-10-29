@@ -2,6 +2,7 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+let guild = null;
 require('x-date');
 
 // create LINE SDK config from env variables
@@ -103,6 +104,8 @@ async function handleEvent(event) {
                 + "\r\nM2 - max 65k";
                 break;
             case "allycode":
+		
+		updateGuild();
                 if(words.length > 1)
                 {
                 message = words[1] + "allycode is: " + getMemberAllycodeByName(words[1]);
@@ -164,9 +167,12 @@ async function getRaub() {
 
 }
 
-async function getMemberAllycodeByName(membername) {
+updateGuild()
+{
+    guild = await client.swapi.guild(allycode, "GER_DE");
+}
 
-    let guild = await client.swapi.guild(allycode, "GER_DE");
+async function getMemberAllycodeByName(membername) {
     
     if( !guild ) { 
 	        let error = "I could not find a guild for this allycode. Please check your settings";
