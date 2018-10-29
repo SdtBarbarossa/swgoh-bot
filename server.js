@@ -180,7 +180,7 @@ async function getMemberAllycodeByName(membername) {
     }
     
     let allycode = guild.roster.find(function(mem) {
-            return mem.Name == membername;
+            return mem.Name.toLowerCase() == membername.toLowerCase();
         });
     
     var message = allycode.allyCode;
