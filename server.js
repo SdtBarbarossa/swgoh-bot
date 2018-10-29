@@ -10,6 +10,8 @@ const config = {
     channelSecret: process.env.CHANNEL_SECRET,
 };
 
+const allycode = process.env.GUILD_ALLYCODE;
+
 const ApiSwgohHelp = require('api-swgoh-help');
 const swapi = new ApiSwgohHelp({
     "username": process.env.API_USERNAME,
