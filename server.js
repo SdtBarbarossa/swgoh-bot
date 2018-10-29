@@ -44,6 +44,10 @@ async function handleEvent(event) {
 
     var message = "";
 
+    if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
+        message = "General Kenobi!";
+    }
+    
     if (event.message.text.startsWith("#")) {
         var words = event.message.text.split(" ");
         var eventWithoutStart = words[0].replace("#", "");
@@ -72,10 +76,29 @@ async function handleEvent(event) {
                 }
                 break;
             case "regeln":
-                message = "Dies sind die Regeln des Schattenkollektives: \n\r- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen \n\r- In den Territorialschlachten ist das 3fache der eigenen GM einzusetzen \n\r- In den TB und TW ist den Befehlen der Offizieren stets folge zu leisten \n\r- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt \n\r- 2100 Raidtickets pro Woche sind zu erbringen \n\r- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein \n\r- Rancor Startzeit: 19:30 \n\r- Haat Startzeit: 20:00 \n\r- Sithraid: wann immer moeglich";
+                message = "Dies sind die Regeln des Schattenkollektives:"
+                + "\r\n- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen"
+                + "\r\n- In den Territorialschlachten ist das 3fache der eigenen GM einzusetzen"
+                + "\r\n- In den TB und TW ist den Befehlen der Offizieren stets folge zu leisten"
+                + "\r\n- Nach 7 Tagen inaktivitaet ohne vorherige abmeldung wird man der Gilde entfernt"
+                + "\r\n- 2100 Raidtickets pro Woche sind zu erbringen"
+                + "\r\n- Man muss ueber Line erreichbar sein. Wenn man nicht selbst in Line ist dann muss man zumindest ueber eine dritte Perosn die ueber Line verfuegt erreichbar sein"
+                + "\r\n- Rancor Startzeit: 19:30"
+                + "\r\n- Haat Startzeit: 20:00"
+                + "\r\n- Sithraid: wann immer moeglich";
                 break;
             case "twlineup":
-                message = "TW-Lineup: \n\rO1 - min 95K \n\rO2 - min 60k \n\rO3 - max 200k \n\rO4 - max 100k";
+                message = "TW-Lineup: "
+                + "\r\nO1 - min 95K"
+                + "\r\nO2 - max 60k"
+                + "\r\nO3 - max 200k (Flotte)"
+                + "\r\nO4 - max 100k (Flotte)"
+                + "\r\nU1 - 65k-75k"
+                + "\r\nU2 - 80k-95k"
+                + "\r\nU3 - 65k-75k"
+                + "\r\nU4 - max 65k"
+                + "\r\nM1 - 65k-75k"
+                + "\r\nM2 - max 65k";
                 break;
         }
     }
