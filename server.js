@@ -174,6 +174,7 @@ async function getRaub() {
 
 async function updateGuild()
 {
+	console.log("Fetiching guild with allycode " + allycode);
     let guildNew = await swapi.fetchGuild(allycode);
 	
 	if( !guildNew ) { 
