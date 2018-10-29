@@ -104,7 +104,7 @@ async function handleEvent(event) {
                 + "\r\nM2 - max 65k";
                 break;
             case "allycode":
-		updateGuild();
+		guild = await updateGuild();
                 if(words.length > 1)
                 {
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
@@ -169,7 +169,8 @@ async function getRaub() {
 
 async function updateGuild()
 {
-    guild = await client.swapi.guild(allycode, "GER_DE");
+    let guildNew = await client.swapi.guild(allycode, "GER_DE");
+	return guildNew;
 }
 
 async function getMemberAllycodeByName(membername) {
