@@ -2,7 +2,7 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-let guild;
+var guild = null;
 require('x-date');
 
 // create LINE SDK config from env variables
