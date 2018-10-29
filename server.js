@@ -106,7 +106,7 @@ async function handleEvent(event) {
             case "allycode":
 		let updatedGuild = await updateGuild();
 			
-			if(!guild){
+			if(!this.guild){
 				return updatedGuild;
 			}
 			
@@ -181,19 +181,19 @@ async function updateGuild()
 	        return error;
     	}
 	
-	guild = guildNew;
+	this.guild = guildNew;
 	
 	return "guild updated sucessfully";
 }
 
 async function getMemberAllycodeByName(membername) {
     
-    if( !guild ) { 
+    if( !this.guild ) { 
 	        let error = "I could not find a guild for this allycode. Please check your settings";
 	        return error;
     }
     
-    let memberNow = guild.roster.find(function(mem) {
+    let memberNow = this.guild.roster.find(function(mem) {
             return mem.Name.toLowerCase() == membername.toLowerCase();
         	}
 	);
