@@ -137,7 +137,7 @@ async function handleEvent(event) {
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
 		var payload = {
 		"allycode" : foundAllyCode,
-		"language": "ENG_US"
+        	"language": "GER_DE"
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
 		message = await getZeta(player);
@@ -187,8 +187,12 @@ async function getZeta(player){
 	var message = "";
 	
 	try{
+		var payload = {
+        	"language": "GER_DE"
+    		};
+		
 		/** Get the zeta recommendations from swapi cacher */
-		let recommendations = await swapi.fetchZetas();
+		let recommendations = await swapi.fetchAPI( swapi.zetas, payload );
 		
 		let today = new Date();
 		
@@ -207,9 +211,7 @@ async function getZeta(player){
 				    
                 let ss = u.skills.filter(s => s.nameKey === z.name);
                 if( ss.length === 0 ) { return null; }
-		    
-                console.log('ss', ss);
-		    
+		    		    
                 ss[0].rarity = u.rarity;
                 ss[0].level = u.level;
                 ss[0].gear = u.gear;
