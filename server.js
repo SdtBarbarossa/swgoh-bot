@@ -113,10 +113,10 @@ async function handleEvent(event) {
                 if(words.length > 1)
                 {
 			try{
-		let foundAllyCode = await getMemberAllycodeByName(words[1]);
-                message = words[1] + " allycode is: " + foundAllyCode;
+		let foundAllyCode = await getMemberAllycodeByName(event.message.text.replace("#allycode ",""));
+                message = event.message.text.replace("#allycode ","") + " allycode is: " + foundAllyCode;
 			}catch(err){
-			message = "kein Mitglied mit dem Namen " + words[1] + " gefunden";	
+			message = "kein Mitglied mit dem Namen " + event.message.text.replace("#allycode ","") + " gefunden";	
 			}
                 }
                 else
@@ -134,7 +134,7 @@ async function handleEvent(event) {
                 if(words.length > 1)
                 {
 			try{
-		let foundAllyCode = await getMemberAllycodeByName(words[1]);
+		let foundAllyCode = await getMemberAllycodeByName(event.message.text.replace("#allycode ",""));
 		var payload = {
 		"allycode" : foundAllyCode,
         	"language": "ENG_US"
