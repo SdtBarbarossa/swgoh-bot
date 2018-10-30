@@ -192,7 +192,7 @@ async function handleEvent(event) {
 				
 				
 			}catch(err){
-			message = "kein Mitglied mit dem Namen " + words[1] + " gefunden";	
+			message = err.message;	
 			}
                 }
                 else
