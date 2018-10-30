@@ -112,8 +112,44 @@ async function handleEvent(event) {
 			
                 if(words.length > 1)
                 {
+			try{
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
                 message = words[1] + " allycode is: " + foundAllyCode;
+			}catch(err){
+			message = "kein Mitglied mit dem Namen " + words[1] + " gefunden";	
+			}
+                }
+                else
+                {
+                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
+                }
+            break;
+            case "zeta":
+		let updatedGuild = await updateGuild();
+			
+			if(!guild){
+				return updatedGuild;
+			}
+			
+                if(words.length > 1)
+                {
+			try{
+		let foundAllyCode = await getMemberAllycodeByName(words[1]);
+		var payload = {
+		"allycode" : foundAllyCode,
+        	"language": "GER_DE"
+    		};
+    		let player = await swapi.fetchPlayer(payload);
+				
+		/** Get the zeta recommendations from swapi cacher */
+		let recommendations = await swapi.fetchZetas();
+				
+                message = words[1] + " recommendations is: " + recommendations.length;
+				
+				
+			}catch(err){
+			message = "kein Mitglied mit dem Namen " + words[1] + " gefunden";	
+			}
                 }
                 else
                 {
