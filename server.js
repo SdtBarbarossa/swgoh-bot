@@ -204,8 +204,11 @@ async function getZeta(player){
 		console.log('z.name', z.name);
 		
             let skill = player.roster.map(u => {
+		
+		console.log('u',u);
+	    	console.log('u.skills', u.skills);
+		    
                 let ss = u.skills.filter(s => s.name === z.name);
-		console.log('u.skills[0].name', u.skills[0].name);
                 if( ss.length === 0 ) { return null; }
                 
                 ss[0].rarity = u.rarity;
@@ -213,7 +216,9 @@ async function getZeta(player){
                 ss[0].gear = u.gear;
                 
                 return ss.length > 0 ? ss[0] : null;
+		    
             });
+	    		
             skill = skill.filter(s => s);
             
             if( !skill || !skill[0] || skill[0].tier === 8 ) { continue; }
