@@ -242,11 +242,6 @@ async function getZeta(player){
 			}catch(err){
 			message = err.message;	
 			}
-                }
-                else
-                {
-                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
-                }
 
 	return message;
 }
