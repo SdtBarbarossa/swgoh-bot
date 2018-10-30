@@ -136,8 +136,7 @@ async function handleEvent(event) {
 			try{
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
 		var payload = {
-		"allycode" : foundAllyCode,
-        	"language": "GER_DE"
+		"allycode" : foundAllyCode
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
 		message = await getZeta(player);
@@ -187,11 +186,8 @@ async function getZeta(player){
 	var message = "";
 	
 	try{
-		var payload = {
-        	"language": "GER_DE"
-    		};
 		/** Get the zeta recommendations from swapi cacher */
-		let recommendations = await swapi.fetchZetas(payload);
+		let recommendations = await swapi.fetchZetas();
 		
 		let today = new Date();
 		
@@ -232,6 +228,7 @@ async function getZeta(player){
             return scoreZeta(a, player.roster) - scoreZeta(b, player.roster);
         });
         
+	console.log('availableZetas', availableZetas.length);
         
         for( let az of availableZetas ) {
 		console.log('az.name', az.name);
