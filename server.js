@@ -107,7 +107,7 @@ async function handleEvent(event) {
 		let updatedGuild = await updateGuild();
 			
 			if(!guild){
-				return updatedGuild;
+				return sendMessage(updatedGuild, event.replyToken);
 			}
 			
                 if(words.length > 1)
@@ -125,10 +125,10 @@ async function handleEvent(event) {
                 }
             break;
             case "zeta":
-		let updatedGuild = await updateGuild();
+		let updatedGuilda = await updateGuild();
 			
 			if(!guild){
-				return updatedGuild;
+				return sendMessage(updatedGuilda, event.replyToken);
 			}
 			
                 if(words.length > 1)
