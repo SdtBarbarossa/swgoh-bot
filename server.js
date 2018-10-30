@@ -136,7 +136,8 @@ async function handleEvent(event) {
 			try{
 		let foundAllyCode = await getMemberAllycodeByName(words[1]);
 		var payload = {
-		"allycode" : foundAllyCode
+		"allycode" : foundAllyCode,
+		"language": "ENG_US"
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
 		message = await getZeta(player);
@@ -204,6 +205,8 @@ async function getZeta(player){
 		
             let skill = player.roster.map(u => {
                 let ss = u.skills.filter(s => s.name === z.name);
+		    
+		console.log('ss.length', ss.length);
                 if( ss.length === 0 ) { return null; }
                 
                 ss[0].rarity = u.rarity;
