@@ -205,8 +205,7 @@ async function getZeta(player){
 		
             let skill = player.roster.map(u => {
                 let ss = u.skills.filter(s => s.name === z.name);
-		    
-		console.log('ss.length', ss.length);
+		console.log('u.skills[0].name', u.skills[0].name);
                 if( ss.length === 0 ) { return null; }
                 
                 ss[0].rarity = u.rarity;
