@@ -226,7 +226,7 @@ async function getZeta(player){
         }
         
 		
-	console.log('availableZetas', availableZetas);
+	console.log('availableZetas', availableZetas.length);
 		
         availableZetas.sort((a,b) => {
             return scoreZeta(a, player.roster) - scoreZeta(b, player.roster);
@@ -234,6 +234,7 @@ async function getZeta(player){
         
         
         for( let az of availableZetas ) {
+		console.log('az.name', az.name);
             if( lim === 0 ) { break; }
             
             message += '\n**'+az.toon+'** : '+az.name+'\n';
