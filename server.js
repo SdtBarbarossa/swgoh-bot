@@ -194,7 +194,9 @@ async function getZeta(player){
 		
 		let lim = 10;
 		message += `${player.name} - Next ${lim} best Zetas`;
-		message += '`------------------------------`\n';
+		message += '\n`------------------------------`\n';
+		
+		console.log('recommendations', recommendations);
 			
 	    let availableZetas = [];
         for( let z of recommendations.zetas ) {
@@ -225,7 +227,7 @@ async function getZeta(player){
         for( let az of availableZetas ) {
             if( lim === 0 ) { break; }
             
-            message += '**'+az.toon+'** : '+az.name+'\n';
+            message += '\n**'+az.toon+'** : '+az.name+'\n';
             
             --lim;
         }
