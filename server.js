@@ -140,11 +140,54 @@ async function handleEvent(event) {
         	"language": "GER_DE"
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
+		message = await getZeta(player);
 				
+			}
+		catch(err){
+				message = err.message;
+			}		
+		
+            break;
+		case "help":
+			message = "Verfügbare kommandos: "
+			 	+ "\r\n #events"
+			 	+ "\r\n #raub"
+			 	+ "\r\n #regeln"
+			 	+ "\r\n #twlineup"
+			 	+ "\r\n #allycode membername"
+			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #help";
+			break;
+	default:
+			message = "Verfügbare kommandos: "
+			 	+ "\r\n #events"
+			 	+ "\r\n #raub"
+			 	+ "\r\n #regeln"
+			 	+ "\r\n #twlineup"
+			 	+ "\r\n #allycode membername"
+			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #help";
+        }
+    }
+
+    if (message == "") {
+        return;
+    }
+
+    return sendMessage(message, event.replyToken);
+}
+
+async function getZeta(player){
+	
+	var message = "";
+	
+	try{
 		/** Get the zeta recommendations from swapi cacher */
 		let recommendations = await swapi.fetchZetas();
 		
-		        let lim = 10;
+		let today = new Date();
+		
+		let lim = 10;
 		let embed = {};
 		embed.title = `${player.name} - Next ${lim} best Zetas`;
 		embed.description = '`------------------------------`\n';
@@ -199,34 +242,8 @@ async function handleEvent(event) {
                 {
                     message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
                 }
-            break;
-		case "help":
-			message = "Verfügbare kommandos: "
-			 	+ "\r\n #events"
-			 	+ "\r\n #raub"
-			 	+ "\r\n #regeln"
-			 	+ "\r\n #twlineup"
-			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta membername"
-			 	+ "\r\n #help";
-			break;
-	default:
-			message = "Verfügbare kommandos: "
-			 	+ "\r\n #events"
-			 	+ "\r\n #raub"
-			 	+ "\r\n #regeln"
-			 	+ "\r\n #twlineup"
-			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta membername"
-			 	+ "\r\n #help";
-        }
-    }
 
-    if (message == "") {
-        return;
-    }
-
-    return sendMessage(message, event.replyToken);
+	return message;
 }
 
 async function getEvents() {
