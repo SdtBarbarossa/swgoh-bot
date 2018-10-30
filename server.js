@@ -204,13 +204,12 @@ async function getZeta(player){
 		console.log('z.name', z.name);
 		
             let skill = player.roster.map(u => {
-		
-		console.log('u',u);
-	    	console.log('u.skills', u.skills);
-		    
-                let ss = u.skills.filter(s => s.name === z.name);
+				    
+                let ss = u.skills.filter(s => s.nameKey === z.name);
                 if( ss.length === 0 ) { return null; }
-                
+		    
+                console.log('ss', ss);
+		    
                 ss[0].rarity = u.rarity;
                 ss[0].level = u.level;
                 ss[0].gear = u.gear;
