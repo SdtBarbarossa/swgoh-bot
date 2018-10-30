@@ -145,7 +145,12 @@ async function handleEvent(event) {
 			}
 		catch(err){
 				message = err.message;
-			}		
+			}
+		}
+                else
+                {
+                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #zeta sdtbarbarossa )";
+                }
 		
             break;
 		case "help":
