@@ -193,9 +193,8 @@ async function getZeta(player){
 		let today = new Date();
 		
 		let lim = 10;
-		let embed = {};
-		embed.title = `${player.name} - Next ${lim} best Zetas`;
-		embed.description = '`------------------------------`\n';
+		message += `${player.name} - Next ${lim} best Zetas`;
+		message += '`------------------------------`\n';
 			
 	    let availableZetas = [];
         for( let z of recommendations.zetas ) {
@@ -226,18 +225,12 @@ async function getZeta(player){
         for( let az of availableZetas ) {
             if( lim === 0 ) { break; }
             
-            embed.description += '**'+az.toon+'** : '+az.name+'\n';
+            message += '**'+az.toon+'** : '+az.name+'\n';
             
             --lim;
         }
         
-		embed.description += '`------------------------------`\n';
-
-		embed.color = 0x936EBB;
-		embed.timestamp = today;
-	
-                message = embed;
-				
+		message += '`------------------------------`\n';			
 				
 			}catch(err){
 			message = err.message;	
