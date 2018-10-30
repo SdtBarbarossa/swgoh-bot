@@ -328,11 +328,6 @@ async function getMemberAllycodeByName(membername) {
             return mem.name.toLowerCase() == membername.toLowerCase();
         	}
 	);
-
-   if( memberNow == null || typeof memberNow == undefined ) { 
-	        let error = "I could not find a Member with name " + membername;
-	        return error;
-    }
     
     var message = memberNow.allyCode;
 
