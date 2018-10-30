@@ -202,9 +202,12 @@ async function getZeta(player){
 		
 	    let availableZetas = [];
 		
-        for( let z of recommendations ) {
+        for( let z of recommendations.zetas ) {
+		
+		console.log('z.name', z.name);
+		
             let skill = player.roster.map(u => {
-                let ss = u.skills.filter(s => s.name === z.Name);
+                let ss = u.skills.filter(s => s.name === z.name);
                 if( ss.length === 0 ) { return null; }
                 
                 ss[0].rarity = u.rarity;
