@@ -242,7 +242,7 @@ async function getZeta(player){
 		console.log('az.name', az.name);
             if( lim === 0 ) { break; }
             
-            message += '\n'+az.toon+' : '+az.name+'\n';
+            message += ''+az.toon+' : '+az.name+'\n';
             
             --lim;
         }
