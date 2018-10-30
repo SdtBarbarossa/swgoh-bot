@@ -187,8 +187,11 @@ async function getZeta(player){
 	var message = "";
 	
 	try{
+		var payload = {
+        	"language": "GER_DE"
+    		};
 		/** Get the zeta recommendations from swapi cacher */
-		let recommendations = await swapi.fetchZetas();
+		let recommendations = await swapi.fetchZetas(payload);
 		
 		let today = new Date();
 		
@@ -196,12 +199,12 @@ async function getZeta(player){
 		message += `${player.name} - Next ${lim} best Zetas`;
 		message += '\n`------------------------------`\n';
 		
-		console.log('recommendations', recommendations);
-			
+		
 	    let availableZetas = [];
-        for( let z of recommendations.zetas ) {
+		
+        for( let z of recommendations ) {
             let skill = player.roster.map(u => {
-                let ss = u.skills.filter(s => s.name === z.name);
+                let ss = u.skills.filter(s => s.name === z.Name);
                 if( ss.length === 0 ) { return null; }
                 
                 ss[0].rarity = u.rarity;
@@ -219,6 +222,9 @@ async function getZeta(player){
             availableZetas.push(z);
         }
         
+		
+	console.log('availableZetas', availableZetas);
+		
         availableZetas.sort((a,b) => {
             return scoreZeta(a, player.roster) - scoreZeta(b, player.roster);
         });
