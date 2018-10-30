@@ -139,7 +139,7 @@ async function handleEvent(event) {
 		"allycode" : foundAllyCode,
         	"language": "GER_DE"
     		};
-    		let player = await swapi.fetchPlayer(payload);
+    		let player = (await swapi.fetchPlayer(payload))[0];
 				
 		/** Get the zeta recommendations from swapi cacher */
 		let recommendations = await swapi.fetchZetas();
