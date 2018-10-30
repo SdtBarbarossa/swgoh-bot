@@ -200,6 +200,25 @@ async function handleEvent(event) {
                     message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
                 }
             break;
+		case "help":
+			message = "Verfügbare kommandos: "
+			 	+ "\r\n #events"
+			 	+ "\r\n #raub"
+			 	+ "\r\n #regeln"
+			 	+ "\r\n #twlineup"
+			 	+ "\r\n #allycode membername"
+			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #help";
+			break;
+	default:
+			message = "Verfügbare kommandos: "
+			 	+ "\r\n #events"
+			 	+ "\r\n #raub"
+			 	+ "\r\n #regeln"
+			 	+ "\r\n #twlineup"
+			 	+ "\r\n #allycode membername"
+			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #help";
         }
     }
 
