@@ -139,7 +139,7 @@ async function handleEvent(event) {
 		let criteriaNow = "";
 		if(messageWithoutCommando.indexOf("#") > 0)
 		{
-			memberNameNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")+1));
+			memberNameNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")-1));
 			console.log('memberNameNow', memberNameNow);
 			criteriaNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
 			console.log('criteriaNow', criteriaNow);
