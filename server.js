@@ -140,7 +140,9 @@ async function handleEvent(event) {
 		if(messageWithoutCommando.indexOf("#") > 0)
 		{
 			memberNameNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")+1));
+			console.log('memberNameNow', memberNameNow);
 			criteriaNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
+			console.log('criteriaNow', criteriaNow);
 		}
 		else{
 			memberNameNow = messageWithoutCommando;		
@@ -155,6 +157,8 @@ async function handleEvent(event) {
 		//to-do
 		let criteria = "";
         	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(criteriaNow) ? criteriaNow : 'versa';
+				
+		console.log('criteria', criteria);
 				
 		message = await getZeta(player, criteria);
 				
