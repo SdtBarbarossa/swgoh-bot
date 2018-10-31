@@ -134,18 +134,29 @@ async function handleEvent(event) {
                 if(words.length > 1)
                 {
 			try{
-		let foundAllyCode = await getMemberAllycodeByName(event.message.text.replace("#zeta ",""));
+		let messageWithoutCommando = event.message.text.replace("#zeta ","");
+		let memberNameNow = "";
+		let criteriaNow = "";
+		if(messageWithoutCommando.indexOf("#") > 0)
+		{
+			memberNameNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")+1));
+			criteriaNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
+		}
+		else{
+			memberNameNow = messageWithoutCommando;		
+		}
+		let foundAllyCode = await getMemberAllycodeByName(memberNameNow);
 		var payload = {
 		"allycode" : foundAllyCode,
         	"language": "ENG_US"
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
 		
-				//to-do
-		//let criteria = rest;
-        	//criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(criteria) ? criteria : 'versa';
+		//to-do
+		let criteria = "";
+        	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(criteriaNow) ? criteriaNow : 'versa';
 				
-		message = await getZeta(player);
+		message = await getZeta(player, criteria);
 				
 			}
 		catch(err){
