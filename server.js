@@ -140,6 +140,11 @@ async function handleEvent(event) {
         	"language": "ENG_US"
     		};
     		let player = (await swapi.fetchPlayer(payload))[0];
+		
+				//to-do
+		//let criteria = rest;
+        	//criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(criteria) ? criteria : 'versa';
+				
 		message = await getZeta(player);
 				
 			}
@@ -182,10 +187,10 @@ async function handleEvent(event) {
     return sendMessage(message, event.replyToken);
 }
 
-async function getZeta(player){
+async function getZeta(player, criteria){
 	
 	var message = "";
-	
+		
 	try{
 		var payload = {
         	"language": "ENG_US"
