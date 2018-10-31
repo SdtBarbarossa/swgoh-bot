@@ -218,7 +218,7 @@ async function getZeta(player, criteria){
 		
 		let lim = 10;
 		message += `${player.name} - Next ${lim} best Zetas`;
-		message += criteria ? '**Filtered by** : *'+criteria+'* \n' : '';
+		message += criteria ? ' Filtered by : '+criteria+' \n' : '';
 		message += '\n------------------------------\n';
 		
 		
