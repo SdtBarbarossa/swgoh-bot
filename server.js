@@ -218,6 +218,7 @@ async function getZeta(player, criteria){
 		
 		let lim = 10;
 		message += `${player.name} - Next ${lim} best Zetas`;
+		message += criteria ? '**Filtered by** : *'+criteria+'* \n' : '';
 		message += '\n------------------------------\n';
 		
 		
@@ -247,9 +248,15 @@ async function getZeta(player, criteria){
             availableZetas.push(z);
         }
         		
-        availableZetas.sort((a,b) => {
-            return scoreZeta(a, player.roster) - scoreZeta(b, player.roster);
-        });
+        if( criteria ) {
+            availableZetas.sort((a,b) => {
+                return scoreZeta(a[criteria], player.roster) - scoreZeta(b[criteria], player.roster) >= 0 ? 1 : -1;
+            });
+        } else {
+            availableZetas.sort((a,b) => {
+                return scoreZeta(a, player.roster) - scoreZeta(b, player.roster) >= 0 ? 1 : -1;
+            });
+        }  
                 
         for( let az of availableZetas ) {
             if( lim === 0 ) { break; }
@@ -259,7 +266,8 @@ async function getZeta(player, criteria){
             --lim;
         }
         
-		message += '------------------------------\n';			
+		message += '------------------------------\n';
+		message += 'Optional filter criteria :\n pvp, tw, tb, pit, tank, sith, versa\n';
 				
 			}catch(err){
 			message = err.message;	
@@ -363,6 +371,8 @@ app.listen(port, () => {
 });
 
 function scoreZeta( zeta, roster ) {
+    if( typeof zeta === 'number' ) return parseInt(zeta);
+
     let rankedScore = zeta.pvp * zeta.tw * zeta.tb * zeta.pit * zeta.tank * zeta.sith;
     if( rankedScore === 0 ) { rankedScore = 999 }
     
