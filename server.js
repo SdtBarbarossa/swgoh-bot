@@ -224,9 +224,7 @@ async function getZeta(player, criteria){
 	    let availableZetas = [];
 		
         for( let z of recommendations.zetas ) {
-		
-		console.log('z.name', z.name);
-		
+				
             let skill = player.roster.map(u => {
 				    
                 let ss = u.skills.filter(s => s.nameKey === z.name);
@@ -248,18 +246,12 @@ async function getZeta(player, criteria){
             z.gear = skill[0].gear;
             availableZetas.push(z);
         }
-        
-		
-	console.log('availableZetas', availableZetas.length);
-		
+        		
         availableZetas.sort((a,b) => {
             return scoreZeta(a, player.roster) - scoreZeta(b, player.roster);
         });
-        
-	console.log('availableZetas', availableZetas.length);
-        
+                
         for( let az of availableZetas ) {
-		console.log('az.name', az.name);
             if( lim === 0 ) { break; }
             
             message += ''+az.toon+' : '+az.name+'\n';
