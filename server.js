@@ -355,7 +355,7 @@ async function getRaub() {
 
 async function updateGuild()
 {
-	if(!guild || guild.updated < (+ new Date()) ){
+	if(!guild || guild.updated < ( (+ new Date()) - (1000*60*60*24) ) ){
 		
 	console.log("Fetiching guild with allycode " + allycode);
 	var payload = {
