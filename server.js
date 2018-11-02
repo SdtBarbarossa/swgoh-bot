@@ -56,6 +56,8 @@ async function handleEvent(event) {
         var eventWithoutStart = words[0].replace("#", "");
 
 	try{
+		
+		console.log("guild", guild);
 	    
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
