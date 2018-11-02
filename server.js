@@ -56,6 +56,8 @@ async function handleEvent(event) {
         var words = event.message.text.split(" ");
         var eventWithoutStart = words[0].replace("#", "");
 
+	try{
+	    
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
                 try {
@@ -222,6 +224,11 @@ async function handleEvent(event) {
         }
     }
 
+	    }
+                catch (err) {
+                    message = "konnte die eventdaten nicht lesen";
+                }
+	
     if (message == "") {
         return;
     }
