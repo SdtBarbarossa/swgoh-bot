@@ -57,8 +57,6 @@ async function handleEvent(event) {
 
 	try{
 		
-		console.log("guild", guild);
-	    
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
                 try {
@@ -357,6 +355,8 @@ async function getRaub() {
 
 async function updateGuild()
 {
+	if(!guild || guild.updated < (+ new Date()) ){
+		
 	console.log("Fetiching guild with allycode " + allycode);
 	var payload = {
 	"allycode" : allycode,
@@ -370,6 +370,11 @@ async function updateGuild()
     	}
 	
 	guild = guildNew[0];
+	
+	}
+	else{
+	console.log("guild still up to date");	
+	}
 	
 	return "guild updated sucessfully";
 }
