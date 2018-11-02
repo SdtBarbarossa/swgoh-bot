@@ -226,7 +226,7 @@ async function handleEvent(event) {
 		
 			    }
                 catch (err) {
-                    message = "konnte die eventdaten nicht lesen";
+                    message = "Error: " + err.message;
                 }
 		
     }
