@@ -115,6 +115,7 @@ async function handleEvent(event) {
                 {
 			try{
 		let foundAllyCode = await getMemberAllycodeByName(event.message.text.replace("#allycode ",""));
+				console.log("foundAllyCode = " + foundAllyCode);
                 message = event.message.text.replace("#allycode ","") + " allycode is: " + foundAllyCode;
 			}catch(err){
 			message = "kein Mitglied mit dem Namen " + event.message.text.replace("#allycode ","") + " gefunden. Error: " + err.message;	
