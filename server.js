@@ -69,6 +69,18 @@ async function handleEvent(event) {
                     message = "konnte die eventdaten nicht lesen";
                 }
                 break;
+	     case "guildUpdate":
+                try {
+			if(!guild || guild.updated < ( (+ new Date()) - (1000*60*60*24) ) ){
+                    message = await updateGuild();
+			}else{
+			message = "Guild is up to date! " + guild.updated ;	
+			}
+                }
+                catch (err) {
+                    message = err.message;
+                }
+                break;
             case "raub":
                 try {
                     message = await getRaub();
