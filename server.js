@@ -222,12 +222,14 @@ async function handleEvent(event) {
 			 	+ "\r\n #zeta membername"
 			 	+ "\r\n #help";
         }
-    }
-
-	    }
+		
+		
+			    }
                 catch (err) {
                     message = "konnte die eventdaten nicht lesen";
                 }
+		
+    }
 	
     if (message == "") {
         return;
