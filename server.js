@@ -29,7 +29,6 @@ const app = express();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
-	req.setTimeout(60* 5 * 1000);
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result))
