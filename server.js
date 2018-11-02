@@ -434,16 +434,16 @@ async function guildOverview(allycodeNow){
 		
 		let today = new Date();
 		
-		message = `${guildNow.name}`;
-		message += guildNow.desc ? '**'+guildNow.desc+'**\n' : '';
-		message += guildNow.message ? '`'+guildNow.message+'`\n' : '';
-		message += '`------------------------------`\n';
-		message += '**Members**: `'+guildNow.members+' / 50`\n';
-		message += guildNow.raid.rancor ? '**Rancor**: `'+guildNow.raid.rancor+'`\n' : '';
-		message += guildNow.raid.aat ? '**AAT**: `'+guildNow.raid.aat+'`\n' : '';
-		message += guildNow.raid.sith_raid ? '**Sith**: `'+guildNow.raid.sith_raid+'`\n' : '';
-		message += '**GP**: `'+guildNow.gp.toLocaleString()+'`\n';
-		message += '`------------------------------`\n';
+		message = `${guildNow.name}\n`;
+		message += guildNow.desc ? guildNow.desc+'\n' : '';
+		message += guildNow.message ? ''+guildNow.message+'\n' : '';
+		message += '------------------------------\n';
+		message += 'Members: '+guildNow.members+' / 50\n';
+		message += guildNow.raid.rancor ? 'Rancor: '+guildNow.raid.rancor+'\n' : '';
+		message += guildNow.raid.aat ? 'AAT: '+guildNow.raid.aat+'\n' : '';
+		message += guildNow.raid.sith_raid ? 'Sith: '+guildNow.raid.sith_raid+'\n' : '';
+		message += 'GP: '+guildNow.gp.toLocaleString()+'\n';
+		message += '------------------------------\n';
 
         message += '\n**Calculating roster, please wait...**';
         
