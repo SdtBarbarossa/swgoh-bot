@@ -424,23 +424,25 @@ async function guildOverview(allycodeNow){
 	"allycode" : allycodeNow,
         "language": "GER_DE"
     	};
-    	let guild = await swapi.fetchGuild(payload);
+    	let guildNow = await swapi.fetchGuild(payload);
 
-		if( !guild ) {
+		if( !guildNow ) {
 		    return 'I could not find a guild.\nMake sure the user is registered, or the allycode used is guild affiliated.';
 		}
 		
+	console.log("found guild with name " + guildNow.Name);
+		
 		let today = new Date();
 		
-		message = `${guild.name}`;
-		message += guild.desc ? '**'+guild.desc+'**\n' : '';
-		message += guild.message ? '`'+guild.message+'`\n' : '';
+		message = `${guildNow.name}`;
+		message += guildNow.desc ? '**'+guildNow.desc+'**\n' : '';
+		message += guildNow.message ? '`'+guildNow.message+'`\n' : '';
 		message += '`------------------------------`\n';
-		message += '**Members**: `'+guild.members+' / 50`\n';
-		message += guild.raid.rancor ? '**Rancor**: `'+guild.raid.rancor+'`\n' : '';
-		message += guild.raid.aat ? '**AAT**: `'+guild.raid.aat+'`\n' : '';
-		message += guild.raid.sith_raid ? '**Sith**: `'+guild.raid.sith_raid+'`\n' : '';
-		message += '**GP**: `'+guild.gp.toLocaleString()+'`\n';
+		message += '**Members**: `'+guildNow.members+' / 50`\n';
+		message += guildNow.raid.rancor ? '**Rancor**: `'+guildNow.raid.rancor+'`\n' : '';
+		message += guildNow.raid.aat ? '**AAT**: `'+guildNow.raid.aat+'`\n' : '';
+		message += guildNow.raid.sith_raid ? '**Sith**: `'+guildNow.raid.sith_raid+'`\n' : '';
+		message += '**GP**: `'+guildNow.gp.toLocaleString()+'`\n';
 		message += '`------------------------------`\n';
 
         message += '\n**Calculating roster, please wait...**';
@@ -448,15 +450,7 @@ async function guildOverview(allycodeNow){
 	return message;
 
 	} catch(e) {
-	    if( e.code === 400 ) {
-            if( retMessage ) {
-                embed.description += '\n**! There was an error completing this guild request**';
-                retMessage.edit({embed}); 
-            }
-            message.reply(e.message);
-	    } else {
-		    throw e;
-		}
+            return e.message;
 	}
 
 }
