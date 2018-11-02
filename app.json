@@ -1,0 +1,31 @@
+{
+    "name": "swgoh bot - LINE Messaging API",
+    "description": "This bot is in a ALPHA stage. Please report errors to sdtbarbarossa",
+    "keywords": ["chatbot", "line", "nodejs"],
+    "env": {
+        "API_PASSWORD": {
+            "description": "swgoh.help api password",
+            "required":  true
+        },
+        "API_USERNAME": {
+            "description": "swgoh.help api username",
+            "required":  true
+        },
+        "CHANNEL_ACCESS_TOKEN": {
+            "description": "LINE bot Channel Access Token from the Channel Console",
+            "required":  true
+        },
+        "CHANNEL_SECRET": {
+            "description": "LINE bot Channel secret from the Channel Console",
+            "required":  true
+        },
+        "GUILD_ALLYCODE": {
+            "description": "Your allycode or one of your guildies ( without - )",
+            "required":  false
+        },
+        "PORT": {
+            "description": "the port to use ( if you are unsure 8080 )",
+            "required":  false
+        } 
+    }
+}
