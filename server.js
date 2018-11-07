@@ -155,7 +155,7 @@ async function handleEvent(event) {
 			console.log('allycodeNow', allycodeNow);
 			let charListNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
 			console.log('charListNow', charListNow);
-		message = await guildOverview(allycodeNow, charListNow.splie(","));
+		message = await guildOverview(allycodeNow, charListNow.split(","));
 		}
 				else{
 		message = await guildOverview(messageWithoutCommando, charList);
