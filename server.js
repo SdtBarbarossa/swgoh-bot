@@ -545,8 +545,7 @@ async function guildOverview(allycodeNow){
         for( let c of charList ) {
     
 		    let u = units[c] || [];
-		    let udef = unitIndex.units.filter(u => u.baseId === c)[0];
-
+		
 		    if( u.length > 0 ) {
 		        value = '';
                 value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
@@ -572,8 +571,7 @@ async function guildOverview(allycodeNow){
         for( let s of shipList ) {
     
 		    let u = units[s] || [];
-		    let udef = unitIndex.units.filter(u => u.baseId === s)[0];
-
+		
 		    if( u.length > 0 ) {
 		        value = '';
                 value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
