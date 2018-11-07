@@ -481,6 +481,112 @@ async function guildOverview(allycodeNow){
 
         message += '\n**Calculating roster, please wait...**';
         
+	//ROSTER CALC
+
+	let unitIndex = await swapi.fetchUnits(payloadUnits);
+        let charList = ["BASTILASHAN", "ENFYSNEST", "DARTHTRAYA"];
+        let shipList = ["HOUNDSTOOTH"];
+               
+        let coi = [];
+        
+        let arenas = [ 0, 0 ];
+        let zetas = 0;
+        
+        let allycodes = guild.roster.map(p => p.allyCode);
+        let units = null;
+        try {
+	var payloadUnits = {
+	"allycode" : allycodes,
+        "language": "GER_DE"
+    	};
+            units = await await swapi.fetchUnits(payloadUnits);
+            if( !units ) {             
+	            let error = new Error('Error fetching units from swgoh.help');
+	            error.code = 400;
+	            throw error;
+            }
+        } catch(e) {
+            console.error(e);
+            let error = new Error('Error fetching units from swgoh.help');
+            error.code = 400;
+            throw error;
+        }
+         
+        let unitIds = Object.keys(units);
+        let shipGP = unitIds.map(id => { 
+            if( units[id][0].type === 'SHIP' || units[id][0].type === 2 ) {
+                return units[id].reduce((total,num) => parseInt(parseInt(total || 0) + parseInt(num.gp || 0)),0);
+            }
+            return 0;
+        });
+        shipGP = shipGP.filter(s => s);
+        shipGP = shipGP.reduce((total,num) => parseInt(parseInt(total) + parseInt(num)),0);
+        
+        let charGP = unitIds.map(id => { 
+            if( units[id][0].type === 'CHARACTER' || units[id][0].type === 1 ) {
+                return units[id].reduce((total,num) => parseInt(parseInt(total || 0) + parseInt(num.gp || 0)),0);
+            }
+            return 0;
+        });
+        charGP = charGP.filter(c => c);
+        charGP = charGP.reduce((total,num) => parseInt(parseInt(total) + parseInt(num)),0);
+        
+        message += '**Calculated GP**: `'+(parseInt(shipGP)+parseInt(charGP)).toLocaleString()+'`\n';
+        message += '**Calculated Char GP**: `'+charGP.toLocaleString()+'`\n';
+        message += '**Calculated Ship GP**: `'+shipGP.toLocaleString()+'`\n';
+	message += '`------------------------------`\n';
+                
+        let value = null;
+        
+        for( let c of charList ) {
+    
+		    let u = units[c] || [];
+		    let udef = unitIndex.units.filter(u => u.baseId === c)[0];
+
+		    if( u.length > 0 ) {
+		        value = '';
+                value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
+                value += '**★★★★★★☆**: `'+u.filter(t => t.starLevel === 6).length+'`\n';
+                value += '**★★★★★☆☆**: `'+u.filter(t => t.starLevel === 5).length+'`\n';
+                value += u.filter(t => t.zetas.length === 3).length > 0 ? '**Zeta ✦✦✦**: `'+u.filter(t => t.zetas.length === 3).length+'`\n' : '';
+                value += u.filter(t => t.zetas.length === 2).length > 0 ? '**Zeta ✦✦**: `'+u.filter(t => t.zetas.length === 2).length+'`\n' : '';
+                value += u.filter(t => t.zetas.length === 1).length > 0 ? '**Zeta ✦**: `'+u.filter(t => t.zetas.length === 1).length+'`\n' : '';
+                value += '**Gear XII+**: `'+u.filter(t => t.gearLevel === 12 && t.gear.length >= 3).length+'`\n';
+                value += '**Gear XII**: `'+u.filter(t => t.gearLevel === 12 && t.gear.length < 3).length+'`\n';
+                value += '**Gear XI**: `'+u.filter(t => t.gearLevel === 11).length+'`\n';
+                value += '**Gear X**: `'+u.filter(t => t.gearLevel === 10).length+'`\n';
+            } else {
+                value = 'None\n';
+            }
+            
+            value += '`------------------------------`\n'
+
+            message += value;
+
+        }
+        
+        for( let s of shipList ) {
+    
+		    let u = units[s] || [];
+		    let udef = unitIndex.units.filter(u => u.baseId === s)[0];
+
+		    if( u.length > 0 ) {
+		        value = '';
+                value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
+                value += '**★★★★★★☆**: `'+u.filter(t => t.starLevel === 6).length+'`\n';
+                value += '**★★★★★☆☆**: `'+u.filter(t => t.starLevel === 5).length+'`\n';
+            } else {
+                value = 'None\n';
+            }
+            
+            value += '`------------------------------`\n'
+
+            message += value;
+
+        }
+       
+	//ROSTER CALC END
+		
 	return message;
 
 	} catch(e) {
