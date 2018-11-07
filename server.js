@@ -463,8 +463,7 @@ async function guildOverview(allycodeNow){
 		    return 'I could not find a guild.\nMake sure the user is registered, or the allycode used is guild affiliated.';
 		}
 		
-	console.log("found guild with name " + guildNow.Name);
-	console.log(guildNowFull);
+	console.log("found guild with name " + guildNow.name);
 		
 		let today = new Date();
 		
@@ -493,7 +492,9 @@ async function guildOverview(allycodeNow){
         let zetas = 0;
         
         let allycodes = guild.roster.map(p => p.allyCode);
-        let units = null;
+	consol.log('allycodes', allycodes);
+        
+	let units = null;
         try {
 	var payloadUnits = {
 	"allycode" : allycodes,
@@ -511,6 +512,8 @@ async function guildOverview(allycodeNow){
             error.code = 400;
             throw error;
         }
+		
+	consol.log('units', units);
          
         let unitIds = Object.keys(units);
         let shipGP = unitIds.map(id => { 
