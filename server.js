@@ -482,7 +482,6 @@ async function guildOverview(allycodeNow){
         
 	//ROSTER CALC
 
-	let unitIndex = await swapi.fetchUnits(payloadUnits);
         let charList = ["BASTILASHAN", "ENFYSNEST", "DARTHTRAYA"];
         let shipList = ["HOUNDSTOOTH"];
                
