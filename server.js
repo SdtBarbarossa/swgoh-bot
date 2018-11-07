@@ -512,7 +512,7 @@ async function guildOverview(allycodeNow){
             throw error;
         }
 		
-	console.log('units', units);
+	console.log('units are not null');
          
         let unitIds = Object.keys(units);
         let shipGP = unitIds.map(id => { 
@@ -537,7 +537,9 @@ async function guildOverview(allycodeNow){
         message += '**Calculated Char GP**: `'+charGP.toLocaleString()+'`\n';
         message += '**Calculated Ship GP**: `'+shipGP.toLocaleString()+'`\n';
 	message += '`------------------------------`\n';
-                
+        
+	console.log('Calculating GP ok');
+		
         let value = null;
         
         for( let c of charList ) {
