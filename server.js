@@ -477,8 +477,6 @@ async function guildOverview(allycodeNow){
 		message += guildNow.raid.sith_raid ? 'Sith: '+guildNow.raid.sith_raid+'\n' : '';
 		message += 'GP: '+guildNow.gp.toLocaleString()+'\n';
 		message += '------------------------------\n';
-
-        message += '\n**Calculating roster, please wait...**';
         
 	//ROSTER CALC
 
@@ -533,10 +531,10 @@ async function guildOverview(allycodeNow){
         charGP = charGP.filter(c => c);
         charGP = charGP.reduce((total,num) => parseInt(parseInt(total) + parseInt(num)),0);
         
-        message += '**Calculated GP**: `'+(parseInt(shipGP)+parseInt(charGP)).toLocaleString()+'`\n';
-        message += '**Calculated Char GP**: `'+charGP.toLocaleString()+'`\n';
-        message += '**Calculated Ship GP**: `'+shipGP.toLocaleString()+'`\n';
-	message += '`------------------------------`\n';
+        message += 'Calculated GP: '+(parseInt(shipGP)+parseInt(charGP)).toLocaleString()+'\n';
+        message += 'Calculated Char GP: '+charGP.toLocaleString()+'\n';
+        message += 'Calculated Ship GP: '+shipGP.toLocaleString()+'\n';
+	message += '------------------------------\n';
         
 	console.log('Calculating GP ok');
 		
@@ -547,17 +545,17 @@ async function guildOverview(allycodeNow){
 		    let u = units[c] || [];
 		
 		    if( u.length > 0 ) {
-		        value = '';
-                value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
-                value += '**★★★★★★☆**: `'+u.filter(t => t.starLevel === 6).length+'`\n';
-                value += '**★★★★★☆☆**: `'+u.filter(t => t.starLevel === 5).length+'`\n';
-                value += u.filter(t => t.zetas.length === 3).length > 0 ? '**Zeta ✦✦✦**: `'+u.filter(t => t.zetas.length === 3).length+'`\n' : '';
-                value += u.filter(t => t.zetas.length === 2).length > 0 ? '**Zeta ✦✦**: `'+u.filter(t => t.zetas.length === 2).length+'`\n' : '';
-                value += u.filter(t => t.zetas.length === 1).length > 0 ? '**Zeta ✦**: `'+u.filter(t => t.zetas.length === 1).length+'`\n' : '';
-                value += '**Gear XII+**: `'+u.filter(t => t.gearLevel === 12 && t.gear.length >= 3).length+'`\n';
-                value += '**Gear XII**: `'+u.filter(t => t.gearLevel === 12 && t.gear.length < 3).length+'`\n';
-                value += '**Gear XI**: `'+u.filter(t => t.gearLevel === 11).length+'`\n';
-                value += '**Gear X**: `'+u.filter(t => t.gearLevel === 10).length+'`\n';
+		        value = '' + c + '\n';
+                value += '★★★★★★★: '+u.filter(t => t.starLevel === 7).length+'\n';
+                value += '★★★★★★☆: '+u.filter(t => t.starLevel === 6).length+'\n';
+                value += '★★★★★☆☆: '+u.filter(t => t.starLevel === 5).length+'\n';
+                value += u.filter(t => t.zetas.length === 3).length > 0 ? 'Zeta ✦✦✦: '+u.filter(t => t.zetas.length === 3).length+'\n' : '';
+                value += u.filter(t => t.zetas.length === 2).length > 0 ? 'Zeta ✦✦: '+u.filter(t => t.zetas.length === 2).length+'\n' : '';
+                value += u.filter(t => t.zetas.length === 1).length > 0 ? 'Zeta ✦: '+u.filter(t => t.zetas.length === 1).length+'\n' : '';
+                value += 'Gear XII+: '+u.filter(t => t.gearLevel === 12 && t.gear.length >= 3).length+'\n';
+                value += 'Gear XII: '+u.filter(t => t.gearLevel === 12 && t.gear.length < 3).length+'\n';
+                value += 'Gear XI: '+u.filter(t => t.gearLevel === 11).length+'\n';
+                value += 'Gear X: '+u.filter(t => t.gearLevel === 10).length+'\n';
             } else {
                 value = 'None\n';
             }
@@ -573,15 +571,15 @@ async function guildOverview(allycodeNow){
 		    let u = units[s] || [];
 		
 		    if( u.length > 0 ) {
-		        value = '';
-                value += '**★★★★★★★**: `'+u.filter(t => t.starLevel === 7).length+'`\n';
-                value += '**★★★★★★☆**: `'+u.filter(t => t.starLevel === 6).length+'`\n';
-                value += '**★★★★★☆☆**: `'+u.filter(t => t.starLevel === 5).length+'`\n';
+		        value = '' + s + '\n';
+                value += '★★★★★★★: '+u.filter(t => t.starLevel === 7).length+'\n';
+                value += '★★★★★★☆: '+u.filter(t => t.starLevel === 6).length+'\n';
+                value += '★★★★★☆☆: '+u.filter(t => t.starLevel === 5).length+'\n';
             } else {
                 value = 'None\n';
             }
             
-            value += '`------------------------------`\n'
+            value += '------------------------------\n'
 
             message += value;
 
