@@ -147,8 +147,19 @@ async function handleEvent(event) {
                 {
 			try{
 		let messageWithoutCommando = event.message.text.replace("#guild ","");
-			
-		message = await guildOverview(messageWithoutCommando);
+		let allycodeNow = null;
+		let charList = [];
+		if(messageWithoutCommando.indexOf("#") > 0)
+		{
+			allycodeNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")-1));
+			console.log('allycodeNow', allycodeNow);
+			let charListNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
+			console.log('criteriaNow', criteriaNow);
+		message = await guildOverview(allycodeNow, charListNow.splie(","));
+		}
+				else{
+		message = await guildOverview(messageWithoutCommando, charList);
+				}
 				
 			}
 		catch(err){
@@ -444,7 +455,7 @@ function scoreRoster( zeta, roster ) {
 
 //Diese Funktionen später auslagern
 
-async function guildOverview(allycodeNow){
+async function guildOverview(allycodeNow, charList){
 	
 	let message = "";
 	
@@ -481,6 +492,9 @@ async function guildOverview(allycodeNow){
 	//ROSTER CALC
 
         let charList = ["BASTILASHAN", "ENFYSNEST", "DARTHTRAYA"];
+		for(let char of charList){
+			charList.push(char);
+		}
         let shipList = ["HOUNDSTOOTH"];
                
         let coi = [];
@@ -560,7 +574,7 @@ async function guildOverview(allycodeNow){
                 value = 'None\n';
             }
             
-            value += '`------------------------------`\n'
+            value += '------------------------------\n'
 
             message += value;
 
