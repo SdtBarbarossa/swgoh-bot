@@ -512,7 +512,7 @@ async function guildOverview(allycodeNow){
             throw error;
         }
 		
-	consol.log('units', units);
+	console.log('units', units);
          
         let unitIds = Object.keys(units);
         let shipGP = unitIds.map(id => { 
