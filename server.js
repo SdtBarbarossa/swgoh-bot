@@ -455,7 +455,7 @@ function scoreRoster( zeta, roster ) {
 
 //Diese Funktionen später auslagern
 
-async function guildOverview(allycodeNow, charList){
+async function guildOverview(allycodeNow, charListNow){
 	
 	let message = "";
 	
@@ -492,7 +492,7 @@ async function guildOverview(allycodeNow, charList){
 	//ROSTER CALC
 
         let charList = ["BASTILASHAN", "ENFYSNEST", "DARTHTRAYA"];
-		for(let char of charList){
+		for(let char of charListNow){
 			charList.push(char);
 		}
         let shipList = ["HOUNDSTOOTH"];
