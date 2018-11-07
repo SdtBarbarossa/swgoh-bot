@@ -490,7 +490,7 @@ async function guildOverview(allycodeNow){
         let arenas = [ 0, 0 ];
         let zetas = 0;
         
-        let allycodes = guild.roster.map(p => p.allyCode);
+        let allycodes = guildNow.roster.map(p => p.allyCode);
 	consol.log('allycodes', allycodes);
         
 	let units = null;
