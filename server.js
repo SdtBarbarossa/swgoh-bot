@@ -456,13 +456,15 @@ async function guildOverview(allycodeNow){
 	"allycode" : allycodeNow,
         "language": "GER_DE"
     	};
-    	let guildNow = (await swapi.fetchGuild(payload))[0];
+    	let guildNowFull = await swapi.fetchGuild(payload);
+    	let guildNow = guildNowFull[0];
 
 		if( !guildNow ) {
 		    return 'I could not find a guild.\nMake sure the user is registered, or the allycode used is guild affiliated.';
 		}
 		
 	console.log("found guild with name " + guildNow.Name);
+	console.log(guildNowFull);
 		
 		let today = new Date();
 		
