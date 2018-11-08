@@ -12,6 +12,7 @@ const config = {
 };
 
 const allycode = process.env.GUILD_ALLYCODE;
+const rssChannelId = process.env.RSS_CCHANNEL_ID;
 
 const ApiSwgohHelp = require('api-swgoh-help');
 const swapi = new ApiSwgohHelp({
@@ -39,6 +40,23 @@ app.post('/callback', line.middleware(config), (req, res) => {
         });
 });
 
+async function rssFeedStuff(){
+	
+let pmessage = {
+  		type: 'text',
+  		text: 'Ich Antworte im richtigem Chat!'
+		};
+
+client.pushMessage(rssChannelId, pmessage)
+  .then(() => {
+    console.log('pushed');
+  })
+  .catch((err) => {
+	console.log(err.message);
+  });
+	
+}
+
 // event handler
 async function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
@@ -52,19 +70,7 @@ async function handleEvent(event) {
 	
     if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
         message = "General Kenobi!";
-
-	    let pmessage = {
-  		type: 'text',
-  		text: 'Hello World!'
-		};
-
-client.pushMessage(event.source.groupId, pmessage)
-  .then(() => {
-    console.log('pushed');
-  })
-  .catch((err) => {
-	console.log(err.message);
-  });
+	    rssFeedStuff();
     }
     
     if (event.message.text.startsWith("#")) {
