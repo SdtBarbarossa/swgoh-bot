@@ -52,6 +52,19 @@ async function handleEvent(event) {
 	
     if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
         message = "General Kenobi!";
+
+	    let pmessage = {
+  		type: 'text',
+  		text: 'Hello World!'
+		};
+
+client.pushMessage(event.source.groupId, pmessage)
+  .then(() => {
+    console.log('pushed');
+  })
+  .catch((err) => {
+	console.log(err.message);
+  });
     }
     
     if (event.message.text.startsWith("#")) {
