@@ -48,6 +48,8 @@ async function handleEvent(event) {
 
     var message = "";
 
+	console.log(event);
+	
     if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
         message = "General Kenobi!";
     }
