@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const pushmessage = require('../Commands/Pushmessage');
 
-module.exports = async ( lineidNow ) => {
+module.exports = async ( lineidNow, allycode ) => {
 	try {
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
 	
@@ -11,9 +11,9 @@ module.exports = async ( lineidNow ) => {
 	if(result.recordset.length == 0)
 	{
 		console.log(result);
-		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},)`;
+		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${allycode})`;
 		
-	pushmessage(lineidNow, "didnt found you in db");
+	pushmessage(lineidNow, "added you to with allycode " + allycode);
 	}
 		else{
 			console.log("anfrage ok: " + result.recordset.length );	
