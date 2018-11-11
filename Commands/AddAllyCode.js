@@ -16,10 +16,10 @@ module.exports = async ( lineidNow, allycode ) => {
 	pushmessage(lineidNow, "added you to with allycode " + allycode);
 	}
 		else{
-			console.log("anfrage ok: " + result.recordset.length );	
-        console.log(result.output);
+				
+
 		
-	pushmessage(lineidNow, result.output);
+	pushmessage(lineidNow, "I already added you with " + result.recordset[0].allycode);
 		}
 		
 		
