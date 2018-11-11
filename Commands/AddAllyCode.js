@@ -11,7 +11,9 @@ module.exports = async ( lineidNow ) => {
 	pushmessage(lineidNow, "didnt found you in db");
 	}
 	
+	console.log("anfrage ok");	
         console.log(result);
+		
 	pushmessage(lineidNow, result);
 		
 	} catch(e) {
