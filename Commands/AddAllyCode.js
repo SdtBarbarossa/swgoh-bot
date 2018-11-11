@@ -8,7 +8,7 @@ module.exports = async ( lineidNow ) => {
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
 		sql.close();
 	
-	if(result.output == "{}")
+	if(result.output.length == 0)
 	{
 	pushmessage(lineidNow, "didnt found you in db");
 	}
