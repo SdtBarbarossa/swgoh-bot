@@ -19,7 +19,7 @@ module.exports = async ( lineidNow, allycode ) => {
 		else{
 			
 			if(result.recordset[0].allycode == null){
-			const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber} where lineId = ${lineidNow})`;
+			const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber} where lineId = ${lineidNow}`;
 		pushmessage(lineidNow, "Updated your allycode to " + allycode);
 			}
 			else{
