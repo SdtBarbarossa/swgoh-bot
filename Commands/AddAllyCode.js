@@ -8,7 +8,7 @@ module.exports = async ( lineidNow, allycode ) => {
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
 		
 	
-	if(result.recordset.length == 0 || result.recordset[0].allycode == null)
+	if(result.recordset.length == 0 )
 	{
 		console.log(result);
 		let allycodeAsNumber = Number(allycode);
@@ -17,7 +17,11 @@ module.exports = async ( lineidNow, allycode ) => {
 	pushmessage(lineidNow, "added you to with allycode " + allycode);
 	}
 		else{
-				
+			
+			if(result.recordset[0].allycode == null){
+			const resultUpdate = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${allycodeAsNumber})`;
+		
+			}
 
 		console.log(result.recordset);
 	pushmessage(lineidNow, "I already added you with " + result.recordset[0].allycode);
