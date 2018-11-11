@@ -80,7 +80,7 @@ async function handleEvent(event) {
 			try{
 			let messageWithoutCommando = event.message.text.replace("#guild ","");
 			const configData = require('./Commands/AddAllyCode');
-			let allycode = configData(event.source.groupId);
+			let allycode = configData(event.source.groupId,messageWithoutCommando );
 			console.log('allycode', allycode);
 			}
 			catch(err){
