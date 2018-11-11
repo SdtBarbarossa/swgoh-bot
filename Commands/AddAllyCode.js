@@ -1,5 +1,5 @@
 const sql = require('mssql');
-const pushmessage = require('../Pushmessage');
+const pushmessage = require('../Commands/Pushmessage');
 
 module.exports = async ( lineid ) => {
 	try {
