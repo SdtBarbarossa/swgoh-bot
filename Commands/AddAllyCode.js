@@ -19,12 +19,15 @@ module.exports = async ( lineidNow, allycode ) => {
 		else{
 			
 			if(result.recordset[0].allycode == null){
-			const resultUpdate = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${allycodeAsNumber})`;
-		
+			const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber} where lineId = ${lineidNow})`;
+		pushmessage(lineidNow, "Updated your allycode to " + allycode);
 			}
+			else{
+			
 
 		console.log(result.recordset);
 	pushmessage(lineidNow, "I already added you with " + result.recordset[0].allycode);
+			}
 		}
 		
 		
