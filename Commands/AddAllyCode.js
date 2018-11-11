@@ -10,6 +10,7 @@ module.exports = async ( lineid ) => {
 		
 	} catch(e) {
   console.log(e.message);
+	pushmessage(lineid, e.message);
 	}
 
 }
