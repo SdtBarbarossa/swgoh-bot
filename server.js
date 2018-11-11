@@ -91,6 +91,18 @@ async function handleEvent(event) {
                     message = "konnte die eventdaten nicht lesen";
                 }
                 break;
+		case "addme":
+			try{
+			let messageWithoutCommando = event.message.text.replace("#guild ","");
+			message = "🤔";
+			const configData = require('../Commands/AddAllyCode');
+			let allycode = configData(event.source.userId);
+			console.log('allycode', allycode);
+			}
+			catch(err){
+			message = err.message;
+			};
+		break;
 	     case "guildupdate":
                 try {
 			if(!guild || guild.updated < ( (+ new Date()) - (1000*60*60*24) ) ){
