@@ -18,7 +18,7 @@ module.exports = async ( lineidNow, allycode ) => {
 		else{
 				
 
-		
+		console.log(result.recordset);
 	pushmessage(lineidNow, "I already added you with " + result.recordset[0].allycode);
 		}
 		
