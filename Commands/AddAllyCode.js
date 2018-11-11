@@ -12,7 +12,7 @@ module.exports = async ( lineidNow ) => {
 	}
 	
 	console.log("anfrage ok");	
-        console.log(result);
+        console.log(result.output);
 		
 	pushmessage(lineidNow, result);
 		
