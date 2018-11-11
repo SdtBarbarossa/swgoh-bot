@@ -40,23 +40,6 @@ app.post('/callback', line.middleware(config), (req, res) => {
         });
 });
 
-async function rssFeedStuff(){
-	
-let pmessage = {
-  		type: 'text',
-  		text: 'Ich Antworte im richtigem Chat!'
-		};
-
-client.pushMessage(rssChannelId, pmessage)
-  .then(() => {
-    console.log('pushed');
-  })
-  .catch((err) => {
-	console.log(err.message);
-  });
-	
-}
-
 // event handler
 async function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
@@ -78,6 +61,8 @@ async function handleEvent(event) {
         var eventWithoutStart = words[0].replace("#", "");
 
 	try{
+	
+	message = "🤔";
 		
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
@@ -94,9 +79,8 @@ async function handleEvent(event) {
 		case "addme":
 			try{
 			let messageWithoutCommando = event.message.text.replace("#guild ","");
-			message = "🤔";
 			const configData = require('./Commands/AddAllyCode');
-			let allycode = configData(event.source.userId);
+			let allycode = configData(event.source.groupId);
 			console.log('allycode', allycode);
 			}
 			catch(err){
