@@ -11,6 +11,7 @@ module.exports = async ( lineidNow ) => {
 	if(result.recordset.length == 0)
 	{
 		console.log(result);
+		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},)`;
 		
 	pushmessage(lineidNow, "didnt found you in db");
 	}
