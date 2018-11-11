@@ -11,7 +11,7 @@ module.exports = async ( lineidNow, allycode ) => {
 	if(result.recordset.length == 0)
 	{
 		console.log(result);
-		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${allycode})`;
+		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${Number(allycode)})`;
 		
 	pushmessage(lineidNow, "added you to with allycode " + allycode);
 	}
