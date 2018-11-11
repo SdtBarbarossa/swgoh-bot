@@ -5,7 +5,6 @@ module.exports = async ( lineid ) => {
 	try {
 	let db = await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
         let result = await db.request()
-            .input('input_parameter', sql.Int, value)
             .query('select * from lineidToAllycode where lineId = ${lineid}');
            
 	if(result == "")
