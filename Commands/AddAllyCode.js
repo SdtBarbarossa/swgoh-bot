@@ -13,7 +13,7 @@ module.exports = async ( lineidNow ) => {
 	pushmessage(lineidNow, "didnt found you in db");
 	}
 		else{
-			console.log("anfrage ok");	
+			console.log("anfrage ok: " + typeof(result.output) );	
         console.log(result.output);
 		
 	pushmessage(lineidNow, result.output);
