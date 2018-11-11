@@ -6,7 +6,7 @@ module.exports = async ( lineidNow, allycode ) => {
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
 	
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
-		sql.close();
+		
 	
 	if(result.recordset.length == 0)
 	{
@@ -24,7 +24,7 @@ module.exports = async ( lineidNow, allycode ) => {
 		
 		
 		
-	
+	sql.close();
 
 		
 	} catch(e) {
