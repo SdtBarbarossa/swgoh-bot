@@ -6,7 +6,7 @@ module.exports = async ( lineidNow ) => {
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`
 	
-	if(result == "")
+	if(result.output == "")
 	{
 	pushmessage(lineidNow, "didnt found you in db");
 	}
