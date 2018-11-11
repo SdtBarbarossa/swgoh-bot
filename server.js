@@ -95,7 +95,7 @@ async function handleEvent(event) {
 			try{
 			let messageWithoutCommando = event.message.text.replace("#guild ","");
 			message = "🤔";
-			const configData = require('../Commands/AddAllyCode');
+			const configData = require('./Commands/AddAllyCode');
 			let allycode = configData(event.source.userId);
 			console.log('allycode', allycode);
 			}
