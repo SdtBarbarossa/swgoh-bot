@@ -70,7 +70,7 @@ async function handleEvent(event) {
 	
     if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
         message = "General Kenobi!";
-	    rssFeedStuff();
+	    //rssFeedStuff();
     }
     
     if (event.message.text.startsWith("#")) {
