@@ -80,26 +80,23 @@ async function handleEvent(event) {
 			try{
 			let messageWithoutCommando = event.message.text.replace("#addme ","");
 			const configData = require('./Commands/AddAllyCode');
-			let allycode = configData(event.source.groupId,messageWithoutCommando );
-			console.log('allycode', allycode);
+			let allycode = configData(event.source.userId , messageWithoutCommando, event.source.groupId );
 			}
 			catch(err){
 			message = err.message;
 			};
 		break;
-	     case "guildupdate":
-                try {
-			if(!guild || guild.updated < ( (+ new Date()) - (1000*60*60*24) ) ){
-                    message = await updateGuild();
-			}else{
-			message = "Guild is up to date! " + guild.updated ;	
+		case "addguild":
+			try{
+			let messageWithoutCommando = event.message.text.replace("#addme ","");
+			const configData = require('./Commands/AddAllyCode');
+			let allycode = configData(event.source.groupId , messageWithoutCommando, event.source.groupId );
 			}
-                }
-                catch (err) {
-                    message = err.message;
-                }
-                break;
-            case "raub":
+			catch(err){
+			message = err.message;
+			};
+		break;
+            case "heist":
                 try {
                     message = await getRaub();
                     if (message == "") {
@@ -188,11 +185,7 @@ async function handleEvent(event) {
                     message = "bitte geben sie einen Allycode mit an ( z.B. : #guild 123456789 )";
                 }
 		
-            break;
-			
-			
-			guildOverview(allycodeNow)
-			
+            break;			
             case "zeta":
 		let updatedGuilda = await updateGuild();
 			
