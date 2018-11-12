@@ -22,7 +22,7 @@ events.events.sort(function(a, b) {
     for (var i = 0; i < events.events.length; i++) {
         var date = new Date(events.events[i].instanceList[0].startTime);
         if (!events.events[i].id.includes('shipevent_') && !events.events[i].id.includes('restrictedmodbattle_') && !events.events[i].id.includes('challenge_') )
-            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\n";
+            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + "\nStart: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\n";
     }
     
 		pushmessage(groupId, message);
