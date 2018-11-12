@@ -76,8 +76,8 @@ async function handleEvent(event) {
                 break;
             case "heist":
                 try {
-		    const GetHeist = require('./Commands/GetHeist');
-                    GetHeist(event.source.groupId);
+		    const GetHeists = require('./Commands/GetHeists');
+                    GetHeists(event.source.groupId);
                 }
                 catch (err) {
                     message = err.message;
