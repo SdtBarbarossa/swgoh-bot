@@ -102,8 +102,6 @@ async function findCharacter(allycodeNow, charListNow){
             } else {
                 value = 'None\n';
             }
-            
-            value += '------------------------------\n'
 
             message += value;
 
