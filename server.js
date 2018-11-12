@@ -158,10 +158,10 @@ async function handleEvent(event) {
 			console.log('allycodeNow', allycodeNow);
 			let charListNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
 			console.log('charListNow', charListNow);
-		message = await GetGuildOverview(event.source.groupId, allycodeNow, charListNow.split(","));
+			GetGuildOverview(event.source.groupId, allycodeNow, charListNow.split(","));
 		}
 				else{
-		message = await GetGuildOverview(event.source.groupId, messageWithoutCommando, charList);
+				GetGuildOverview(event.source.groupId, messageWithoutCommando, charList);
 				}
 				
 			}
