@@ -30,7 +30,7 @@ async function guildOverview(allycodeNow, charListNow){
 	console.log("Fetiching guild with allycode " + allycodeNow);
 	var payload = {
 	"allycode" : allycodeNow,
-        "language": "GER_DE"
+        "language": "ENG_US"
     	};
     	let guildNowFull = await swapi.fetchGuild(payload);
     	let guildNow = guildNowFull[0];
