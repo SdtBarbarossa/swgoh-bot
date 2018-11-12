@@ -10,7 +10,6 @@ const swapi = new ApiSwgohHelp({
 module.exports = async ( groupId, membername ) => {
 	try {
   let message = "";
-  console.log('groupId', groupId);
   let allyCodeNow = await getAllyCode( groupId, groupId );
 
   console.log('allyCodeNow', allyCodeNow);
@@ -21,10 +20,7 @@ module.exports = async ( groupId, membername ) => {
    };
    
    let guildNew = await swapi.fetchGuild(payload);
-   
-   console.log('guildNew', guildNew);
    let guild = guildNew[0];
-   console.log('guild', guild);
 		
    let memberNow = guild.roster.find(function(mem) {
             return mem.name.toLowerCase() == membername.toLowerCase();
