@@ -187,8 +187,6 @@ async function handleEvent(event) {
 		
             break;			
             case "zeta":
-                if(words.length > 1)
-                {
 			try{
 		let messageWithoutCommando = event.message.text.replace("#zeta ","");
 		//to-do
@@ -201,13 +199,7 @@ async function handleEvent(event) {
 			}
 		catch(err){
 				message = err.message;
-			}
-		}
-                else
-                {
-                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #zeta sdtbarbarossa )";
-                }
-		
+			}		
             break;
 		case "help":
 			message = "Verfügbare kommandos: "
