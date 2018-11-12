@@ -129,28 +129,20 @@ async function handleEvent(event) {
                 + "\r\nM2 - max 65k";
                 break;
             case "allycode":
-		let updatedGuild = await updateGuild();
-			
-			if(!guild){
-				return sendMessage(updatedGuild, event.replyToken);
-			}
-			
                 if(words.length > 1)
                 {
 			try{
-		let foundAllyCode = await getMemberAllycodeByName(event.message.text.replace("#allycode ",""));
-				console.log("foundAllyCode = " + foundAllyCode);
-                message = event.message.text.replace("#allycode ","") + " allycode is: " + foundAllyCode;
+		const GetAllyCodeFromGuild = require('./Commands/GetAllyCodeFromGuild');
+		GetAllyCodeFromGuild(event.source.groupId , event.message.text.replace("#allycode ","") );
 			}catch(err){
-			message = "kein Mitglied mit dem Namen " + event.message.text.replace("#allycode ","") + " gefunden. Error: " + err.message;	
+			message = err.message;	
 			}
                 }
                 else
                 {
-                    message = "bitte geben sie einen Membernamen mit an ( z.B. : #allycode sdtbarbarossa )";
+                    message = "please input the membername you search ( z.B. : #allycode sdtbarbarossa )";
                 }
             break;
-		
 	    case "guild":
 			
                 if(words.length > 1)
@@ -198,23 +190,19 @@ async function handleEvent(event) {
 			}		
             break;
 		case "help":
-			message = "Verfügbare kommandos: "
+			message = "Available commands: "
 			 	+ "\r\n #events"
-			 	+ "\r\n #raub"
-			 	+ "\r\n #regeln"
-			 	+ "\r\n #twlineup"
+			 	+ "\r\n #heist"
 			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #zeta #criteria"
 			 	+ "\r\n #help";
 			break;
 	default:
-			message = "Verfügbare kommandos: "
+			message = "Available commands: "
 			 	+ "\r\n #events"
-			 	+ "\r\n #raub"
-			 	+ "\r\n #regeln"
-			 	+ "\r\n #twlineup"
+			 	+ "\r\n #heist"
 			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta membername"
+			 	+ "\r\n #zeta #criteria"
 			 	+ "\r\n #help";
         }
 		
@@ -231,52 +219,6 @@ async function handleEvent(event) {
     }
 
     return sendMessage(message, event.replyToken);
-}
-
-async function updateGuild()
-{
-	var now = new Date();
-	var yesterday = now.setDate(now.getDate() - 1)
-	if(!guild || guild.updated < (+ yesterday) ){
-		
-	console.log("Fetiching guild with allycode " + allycode);
-	var payload = {
-	"allycode" : allycode,
-        "language": "GER_DE"
-    };
-    let guildNew = await swapi.fetchGuild(payload);
-	
-	if( !guildNew ) { 
-	        let error = "I could not find a guild for this allycode. Please check your settings";
-	        return error;
-    	}
-	
-	guild = guildNew[0];
-	
-	}
-	else{
-	console.log("guild still up to date");	
-	}
-	
-	return "guild updated sucessfully";
-}
-
-async function getMemberAllycodeByName(membername) {
-    
-    if( !guild ) { 
-	        let error = "I could not find a guild for this allycode. Please check your settings";
-	        return error;
-    }
-    
-    let memberNow = guild.roster.find(function(mem) {
-            return mem.name.toLowerCase() == membername.toLowerCase();
-        	}
-	);
-    
-    var message = memberNow.allyCode;
-
-    return message;
-
 }
 
 function sendMessage(message, token) {
