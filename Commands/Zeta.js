@@ -9,7 +9,7 @@ const swapi = new ApiSwgohHelp({
 
 module.exports = async ( lineidNow, groupId, criteriaNow ) => {
 	try {
-  let allyCodeNow = await GetAllyCode( lineidNow, groupId );
+  let allyCodeNow = await getAllyCode( lineidNow, groupId );
 		
 var payload = {
 		"allycode" : allyCodeNow,
