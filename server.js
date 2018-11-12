@@ -174,6 +174,32 @@ async function handleEvent(event) {
                     message = "please give me the allycode of a guildmember ( z.B. : #guild 123456789 )";
                 }
 		
+            break;
+	    case "character":
+			
+                if(words.length > 1)
+                {
+			try{
+		let messageWithoutCommando = event.message.text.replace("#character ","");
+		let allycodeNow = null;
+		let charList = [];
+		const GetCharFromGuild = require('./Commands/GetCharFromGuild');
+
+		console.log('allycodeNow', allycodeNow);
+		let charListNow = messageWithoutCommando;
+		console.log('charListNow', charListNow);
+		GetCharFromGuild(event.source.groupId, charListNow.split(","));
+
+			}
+		catch(err){
+				message = err.message;
+			}
+		}
+                else
+                {
+                    message = "please give me the allycode of a guildmember ( z.B. : #guild 123456789 )";
+                }
+		
             break;			
             case "zeta":
 			try{
