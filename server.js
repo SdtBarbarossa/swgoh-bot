@@ -79,8 +79,8 @@ async function handleEvent(event) {
 		case "addme":
 			try{
 			let messageWithoutCommando = event.message.text.replace("#addme ","");
-			const configData = require('./Commands/AddAllyCode');
-			let allycode = configData(event.source.userId , messageWithoutCommando, event.source.groupId );
+			const addMe = require('./Commands/AddAllyCode');
+			let allycode = addMe(event.source.userId , messageWithoutCommando, event.source.groupId );
 			}
 			catch(err){
 			message = err.message;
@@ -197,32 +197,12 @@ async function handleEvent(event) {
                 {
 			try{
 		let messageWithoutCommando = event.message.text.replace("#zeta ","");
-		let memberNameNow = "";
-		let criteriaNow = "";
-		if(messageWithoutCommando.indexOf("#") > 0)
-		{
-			memberNameNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")-1));
-			console.log('memberNameNow', memberNameNow);
-			criteriaNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
-			console.log('criteriaNow', criteriaNow);
-		}
-		else{
-			memberNameNow = messageWithoutCommando;		
-		}
-		let foundAllyCode = await getMemberAllycodeByName(memberNameNow);
-		var payload = {
-		"allycode" : foundAllyCode,
-        	"language": "ENG_US"
-    		};
-    		let player = (await swapi.fetchPlayer(payload))[0];
-		
 		//to-do
 		let criteria = "";
-        	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(criteriaNow) ? criteriaNow : 'versa';
-				
-		console.log('criteria', criteria);
-				
-		message = await getZeta(player, criteria);
+        	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(messageWithoutCommando) ? messageWithoutCommando : 'versa';
+		
+		const zeta = require('./Commands/Zeta');
+		let allycode = zeta(event.source.userId , event.source.groupId, criteria );
 				
 			}
 		catch(err){
@@ -269,80 +249,6 @@ async function handleEvent(event) {
     }
 
     return sendMessage(message, event.replyToken);
-}
-
-async function getZeta(player, criteria){
-	
-	var message = "";
-		
-	try{
-		var payload = {
-        	"language": "ENG_US"
-    		};
-		
-		/** Get the zeta recommendations from swapi cacher */
-		let recommendations = await swapi.fetchAPI( swapi.zetas, payload );
-		
-		let today = new Date();
-		
-		let lim = 10;
-		message += `${player.name} - Next ${lim} best Zetas`;
-		message += criteria ? ' Filtered by : '+criteria+' \n' : '';
-		message += '\n------------------------------\n';
-		
-		
-	    let availableZetas = [];
-		
-        for( let z of recommendations.zetas ) {
-				
-            let skill = player.roster.map(u => {
-				    
-                let ss = u.skills.filter(s => s.nameKey === z.name);
-                if( ss.length === 0 ) { return null; }
-		    		    
-                ss[0].rarity = u.rarity;
-                ss[0].level = u.level;
-                ss[0].gear = u.gear;
-                
-                return ss.length > 0 ? ss[0] : null;
-		    
-            });
-	    		
-            skill = skill.filter(s => s);
-            
-            if( !skill || !skill[0] || skill[0].tier === 8 ) { continue; }
-            
-            z.rarity = skill[0].rarity;
-            z.gear = skill[0].gear;
-            availableZetas.push(z);
-        }
-        		
-        if( criteria ) {
-            availableZetas.sort((a,b) => {
-                return scoreZeta(a[criteria], player.roster) - scoreZeta(b[criteria], player.roster) >= 0 ? 1 : -1;
-            });
-        } else {
-            availableZetas.sort((a,b) => {
-                return scoreZeta(a, player.roster) - scoreZeta(b, player.roster) >= 0 ? 1 : -1;
-            });
-        }  
-                
-        for( let az of availableZetas ) {
-            if( lim === 0 ) { break; }
-            
-            message += ''+az.toon+' : '+az.name+'\n';
-            
-            --lim;
-        }
-        
-		message += '------------------------------\n';
-		message += 'Optional filter criteria :\n pvp, tw, tb, pit, tank, sith, versa\n';
-				
-			}catch(err){
-			message = err.message;	
-			}
-
-	return message;
 }
 
 async function getEvents() {
@@ -447,21 +353,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });
-
-function scoreZeta( zeta, roster ) {
-    if( typeof zeta === 'number' ) return parseInt(zeta);
-
-    let rankedScore = zeta.pvp * zeta.tw * zeta.tb * zeta.pit * zeta.tank * zeta.sith;
-    if( rankedScore === 0 ) { rankedScore = 999 }
-    
-    let rosterScore = scoreRoster( zeta, roster );
-    return rankedScore - rosterScore;
-}
-
-function scoreRoster( zeta, roster ) {
-    // To-do : build a roster score based on squad support for zeta
-    return (zeta.gear * zeta.rarity);
-}
 
 //Diese Funktionen später auslagern
 
