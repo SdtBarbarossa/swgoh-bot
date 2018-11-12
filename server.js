@@ -151,16 +151,17 @@ async function handleEvent(event) {
 		let messageWithoutCommando = event.message.text.replace("#guild ","");
 		let allycodeNow = null;
 		let charList = [];
+		const GetGuildOverview = require('./Commands/GetGuildOverview');
 		if(messageWithoutCommando.indexOf("#") > 0)
 		{
 			allycodeNow = messageWithoutCommando.substr(0, (messageWithoutCommando.indexOf("#")-1));
 			console.log('allycodeNow', allycodeNow);
 			let charListNow = messageWithoutCommando.substr(messageWithoutCommando.indexOf("#")+1, (messageWithoutCommando.length-(messageWithoutCommando.indexOf("#")+1)));
 			console.log('charListNow', charListNow);
-		message = await guildOverview(allycodeNow, charListNow.split(","));
+		message = await GetGuildOverview(event.source.groupId, allycodeNow, charListNow.split(","));
 		}
 				else{
-		message = await guildOverview(messageWithoutCommando, charList);
+		message = await GetGuildOverview(event.source.groupId, messageWithoutCommando, charList);
 				}
 				
 			}
@@ -170,7 +171,7 @@ async function handleEvent(event) {
 		}
                 else
                 {
-                    message = "bitte geben sie einen Allycode mit an ( z.B. : #guild 123456789 )";
+                    message = "please give me the allycode of a guildmember ( z.B. : #guild 123456789 )";
                 }
 		
             break;			
