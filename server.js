@@ -187,12 +187,6 @@ async function handleEvent(event) {
 		
             break;			
             case "zeta":
-		let updatedGuilda = await updateGuild();
-			
-			if(!guild){
-				return sendMessage(updatedGuilda, event.replyToken);
-			}
-			
                 if(words.length > 1)
                 {
 			try{
