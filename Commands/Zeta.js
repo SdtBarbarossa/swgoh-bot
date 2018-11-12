@@ -20,7 +20,6 @@ let player = (await swapi.fetchPlayer(payload))[0];
   pushmessage(groupId, answer);
 	} catch(e) {
   		console.log(e.message);
-		sql.close();
 		pushmessage(groupId, e.message);
 	}
 
