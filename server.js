@@ -67,13 +67,20 @@ async function handleEvent(event) {
         switch (eventWithoutStart.toLowerCase()) {
             case "events":
                 try {
-                    message = await getEvents();
-                    if (message == "") {
-                        message = "keine events gefunden";
-                    }
+		    const GetEvents = require('./Commands/GetEvents');
+                    GetEvents(event.source.groupId);
                 }
                 catch (err) {
-                    message = "konnte die eventdaten nicht lesen";
+                    message = err.message;
+                }
+                break;
+            case "heist":
+                try {
+		    const GetHeist = require('./Commands/GetHeist');
+                    GetHeist(event.source.groupId);
+                }
+                catch (err) {
+                    message = err.message;
                 }
                 break;
 		case "addme":
@@ -96,17 +103,6 @@ async function handleEvent(event) {
 			message = err.message;
 			};
 		break;
-            case "heist":
-                try {
-                    message = await getRaub();
-                    if (message == "") {
-                        message = "keinen Raub gefunden";
-                    }
-                }
-                catch (err) {
-                    message = "konnte die eventdaten nicht lesen";
-                }
-                break;
             case "regeln":
                 message = "Dies sind die Regeln des Schattenkollektives:"
                 + "\r\n- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen"
@@ -235,48 +231,6 @@ async function handleEvent(event) {
     }
 
     return sendMessage(message, event.replyToken);
-}
-
-async function getEvents() {
-
-    var payload = {
-        "language": "GER_DE"
-    };
-    let events = await swapi.fetchEvents(payload);
-    console.log(events);
-
-    var message = "";
-    console.log("length ist:");
-    console.log(events.events.length);
-    for (var i = 0; i < events.events.length; i++) {
-        var date = new Date(events.events[i].instanceList[0].startTime);
-        if (!events.events[i].id.includes('shipevent_') && !events.events[i].id.includes('restrictedmodbattle_') && !events.events[i].id.includes('challenge_') )
-            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\r\n\r";
-    }
-    
-    return message;
-
-}
-
-async function getRaub() {
-
-    var payload = {
-        "language": "GER_DE"
-    };
-    let events = await swapi.fetchEvents(payload);
-    console.log(events);
-
-    var message = "";
-    console.log("length ist:");
-    console.log(events.events.length);
-    for (var i = 0; i < events.events.length; i++) {
-        var date = new Date(events.events[i].instanceList[0].startTime);
-        if (events.events[i].id == 'EVENT_TRAINING_DROID_SMUGGLING' || events.events[i].id == 'EVENT_CREDIT_HEIST_GETAWAY_V2' || events.events[i].id == 'EVENT_RESOURCE_SMUGGLERS_RUN' || events.events[i].id == 'EVENT_RESOURCE_CONTRABAND_CARGO')
-            message = message + "Event: " + events.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + " Start: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\r\n\r";
-    }
-
-    return message;
-
 }
 
 async function updateGuild()
