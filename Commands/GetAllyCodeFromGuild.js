@@ -10,6 +10,7 @@ const swapi = new ApiSwgohHelp({
 module.exports = async ( groupId, membername ) => {
 	try {
   let message = "";
+  console.log('groupId', groupId);
   let allyCodeNow = await getAllyCode( groupId, groupId );
 
   console.log('allyCodeNow', allyCodeNow);
