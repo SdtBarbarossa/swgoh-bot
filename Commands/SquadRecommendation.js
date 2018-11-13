@@ -28,7 +28,7 @@ async function getSquadRecommendations(criteria, phase){
     
 		//console.log('recommendations[sith].phase[0]',recommendations[criteria].phase[phaseAsNumber]);
 		
-		message += recommendations[criteria].phase[phaseAsNumber].name + "\n";
+		message += recommendations[criteria].phase[phaseAsNumber].name + "\n\n";
 		
 		let squadsForPhase = recommendations[criteria].phase[phaseAsNumber].squads;
 		
@@ -37,8 +37,9 @@ async function getSquadRecommendations(criteria, phase){
 			message += squadsForPhase[i].name + "\n";
 			message += squadsForPhase[i].note + "\n";
 			for(var a = 0; a < squadsForPhase[i].team.length;a++){
-				message += squadsForPhase[i].team[a] + "\n";
+				message += squadsForPhase[i].team[a] + ",";
 			    }
+			message += "\n\n";
 		}
 		
 		message += `Recommendation keys: \n${Object.keys(recommendations).join('\n')}\n`;
