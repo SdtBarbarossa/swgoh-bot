@@ -42,7 +42,7 @@ async function getSquadRecommendations(criteria, phase){
 			message += "\n\n";
 		}
 		
-		message += `Recommendation keys: \n${Object.keys(recommendations).join('\n')}\n`;
+		message += `Recommendation keys: \n${Object.keys(recommendations).join(',')}`;
 				
 			}catch(err){
 			message = err.message;	
