@@ -215,6 +215,15 @@ async function handleEvent(event) {
 		catch(err){
 				message = err.message;
 			}		
+            break;			
+            case "squads":
+			try{
+		const SquadRecommendation = require('./Commands/SquadRecommendation');
+		SquadRecommendation( event.source.groupId );
+			}
+		catch(err){
+				message = err.message;
+			}		
             break;
 		case "help":
 			message = "Available commands: "
