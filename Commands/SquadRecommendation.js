@@ -25,6 +25,8 @@ async function getSquadRecommendations(){
 	try{
 		let recommendations = await swapi.fetchSquads({});
     
+		console.log('recommendations',recommendations);
+		
 		message += `Recommendation keys: ${Object.keys(recommendations).join('\n')}\n`;
 				
 			}catch(err){
