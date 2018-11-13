@@ -26,17 +26,18 @@ async function getSquadRecommendations(criteria, phase){
 		let phaseAsNumber = Number(phase)-1;
 		let recommendations = await swapi.fetchSquads({});
     
-		console.log('recommendations[sith].phase[0]',recommendations[criteria].phase[phaseAsNumber]);
+		//console.log('recommendations[sith].phase[0]',recommendations[criteria].phase[phaseAsNumber]);
 		
 		message += recommendations[criteria].phase[phaseAsNumber].name + "\n";
 		
 		let squadsForPhase = recommendations[criteria].phase[phaseAsNumber].squads;
 		
-		for(let s in squadsForPhase){
-			message += s.name + "\n";
-			message += s.note + "\n";
-			for(let t in s.team){
-				message += t + "\n";
+		for(var i = 0; i < squadsForPhase.length;i++){
+			console.log('squadsForPhase[i]', squadsForPhase[i]);
+			message += squadsForPhase[i].name + "\n";
+			message += squadsForPhase[i].note + "\n";
+			for(var a = 0; a < squadsForPhase[i].team.length;a++){
+				message += squadsForPhase[i].team[a] + "\n";
 			    }
 		}
 		
