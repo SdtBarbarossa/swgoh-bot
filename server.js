@@ -237,16 +237,29 @@ async function handleEvent(event) {
 			message = "Available commands: "
 			 	+ "\r\n #events"
 			 	+ "\r\n #heist"
+			 	+ "\r\n #addme {allycode}"
+			 	+ "\r\n #addguild {allycode}"
+			 	+ "\r\n #zeta {criteria}"
 			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta #criteria"
+			 	+ "\r\n #guild {allycode} #{chracter}"
+			 	+ "\r\n #character {character}"
+			 	+ "\r\n #squads {raid} {phase}"
+			 	+ "\r\n #allycode membername"
 			 	+ "\r\n #help";
 			break;
 	default:
+			
 			message = "Available commands: "
 			 	+ "\r\n #events"
 			 	+ "\r\n #heist"
+			 	+ "\r\n #addme {allycode}"
+			 	+ "\r\n #addguild {allycode}"
+			 	+ "\r\n #zeta {criteria}"
 			 	+ "\r\n #allycode membername"
-			 	+ "\r\n #zeta #criteria"
+			 	+ "\r\n #guild {allycode} #{chracter}"
+			 	+ "\r\n #character {character}"
+			 	+ "\r\n #squads {raid} {phase}"
+			 	+ "\r\n #allycode membername"
 			 	+ "\r\n #help";
         }
 		
