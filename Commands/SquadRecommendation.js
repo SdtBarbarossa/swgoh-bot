@@ -7,9 +7,9 @@ const swapi = new ApiSwgohHelp({
     "password": process.env.API_PASSWORD
 });
 
-module.exports = async ( groupId ) => {
+module.exports = async ( groupId , criteria, phase) => {
 	try {
-		let answer = await getSquadRecommendations('sith', '1');
+		let answer = await getSquadRecommendations(criteria, phase);
   pushmessage(groupId, answer);
 	} catch(e) {
   		console.log(e.message);
@@ -39,11 +39,11 @@ async function getSquadRecommendations(criteria, phase){
 			for(var a = 0; a < squadsForPhase[i].team.length;a++){
 				if(squadsForPhase[i].team[a].indexOf(':') !== -1)
 				{
-					message += squadsForPhase[i].team[a].substring(0, squadsForPhase[i].team[a].indexOf(':')) + ",";
+					message += squadsForPhase[i].team[a].substring(0, squadsForPhase[i].team[a].indexOf(':')) + ", ";
 				}
 				else
 				{
-					message += squadsForPhase[i].team[a] + ",";
+					message += squadsForPhase[i].team[a] + ", ";
 				}
 			    }
 			message += "\n\n";
