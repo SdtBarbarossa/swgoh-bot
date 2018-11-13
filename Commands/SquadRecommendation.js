@@ -39,11 +39,11 @@ async function getSquadRecommendations(criteria, phase){
 			for(var a = 0; a < squadsForPhase[i].team.length;a++){
 				if(squadsForPhase[i].team[a].indexOf(':') !== -1)
 				{
-					message += squadsForPhase[i].team[a] + ",";
+					message += squadsForPhase[i].team[a].substring(0, squadsForPhase[i].team[a].indexOf(':')) + ",";
 				}
 				else
 				{
-					message += squadsForPhase[i].team[a].substring(0, squadsForPhase[i].team[a].indexOf(':')) + ",";
+					message += squadsForPhase[i].team[a] + ",";
 				}
 			    }
 			message += "\n\n";
