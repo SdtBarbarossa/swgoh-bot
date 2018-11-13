@@ -32,7 +32,7 @@ async function getSquadRecommendations(criteria, phase){
 		
 		let squadsForPhase = recommendations[criteria].phase[phaseAsNumber].squads;
 		
-		for(var i = 0; i < squadsForPhase.length;i++){
+		for(var i = 0; (i < squadsForPhase.length) && (i < 10) ;i++){
 			console.log('squadsForPhase[i]', squadsForPhase[i]);
 			message += squadsForPhase[i].name + "\n";
 			message += squadsForPhase[i].note + "\n";
