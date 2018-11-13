@@ -218,8 +218,16 @@ async function handleEvent(event) {
             break;			
             case "squads":
 			try{
+		let messageWithoutCommando = event.message.text.replace("#squads ","");
+		
+		if(messageWithoutCommando.length == 0){
+		   message = "please give me a criteria. for e.g. #squads sith 1";
+		   }
+		else{
 		const SquadRecommendation = require('./Commands/SquadRecommendation');
-		SquadRecommendation( event.source.groupId );
+		let criterias = messageWithoutCommando.split(" ");
+		SquadRecommendation( event.source.groupId, criterias[0], criterias[1]);
+		}
 			}
 		catch(err){
 				message = err.message;
