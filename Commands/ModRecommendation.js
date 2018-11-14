@@ -28,6 +28,8 @@ module.exports = async ( groupId, charaktername ) => {
   charNow = charShortName;  
   }
   
+  if(charNow)
+  {
   message += "Name : " + charNow.name + "\n";
   message += "----------------------\n";
   message += "set1 : " + charNow.set1 + "\n";
@@ -40,6 +42,10 @@ module.exports = async ( groupId, charaktername ) => {
   message += "triangle : " + charNow.triangle + "\n";
   message += "circle : " + charNow.circle + "\n";
   message += "cross : " + charNow.cross;
+  }
+  else{
+  message += "no char found for '" + charaktername + "'";
+  }
   
 		pushmessage(groupId, message);
   });
