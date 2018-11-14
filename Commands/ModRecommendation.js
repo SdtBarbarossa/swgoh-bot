@@ -39,7 +39,7 @@ module.exports = async ( groupId, charaktername ) => {
   message += "diamond : " + charNow.diamond + "\n";
   message += "triangle : " + charNow.triangle + "\n";
   message += "circle : " + charNow.circle + "\n";
-  message += "cross : " + charNow.cross + "\n";
+  message += "cross : " + charNow.cross;
   
 		pushmessage(groupId, message);
   });
