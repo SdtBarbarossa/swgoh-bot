@@ -31,6 +31,7 @@ module.exports = async ( groupId, charaktername ) => {
   if(charNow)
   {
   message += "Name : " + charNow.name + "\n";
+  message += "Short : " + charNow.short + "\n";
   message += "----------------------\n";
   message += "set1 : " + charNow.set1 + "\n";
   message += "set2 : " + charNow.set2 + "\n";
