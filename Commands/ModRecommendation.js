@@ -1,13 +1,13 @@
 const pushmessage = require('../Commands/Pushmessage');
-const http = require('http');
+const https = require('https');
 
 module.exports = async ( groupId, charaktername ) => {
 	try {
     let message = "";
     
-    const modRecommendationUrl = "http://apps.crouchingrancor.com/mods/advisor.json";
+    const modRecommendationUrl = "https://apps.crouchingrancor.com/mods/advisor.json";
 
-    http.get(modRecommendationUrl, (resp) => {
+    https.get(modRecommendationUrl, (resp) => {
     let data = '';
     // A chunk of data has been recieved.
     resp.on('data', (chunk) => {
