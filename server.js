@@ -103,6 +103,16 @@ async function handleEvent(event) {
 			message = err.message;
 			};
 		break;
+		case "mods":
+			try{
+			let messageWithoutCommando = event.message.text.replace("#mods ","");
+			const ModRecommendation = require('./Commands/ModRecommendation');
+			ModRecommendation(event.source.groupId , messageWithoutCommando );
+			}
+			catch(err){
+			message = err.message;
+			};
+		break;
             case "regeln":
                 message = "Dies sind die Regeln des Schattenkollektives:"
                 + "\r\n- Wenn man am Territorialkrieg angemeldet ist muss man sich beteiligen"
