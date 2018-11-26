@@ -55,6 +55,13 @@ async function handleEvent(event) {
         message = "General Kenobi!";
     }
 	
+   let ran = getRandomInt(100);
+	
+  if(ran && ran >95){
+	  const grivious = require('./Commands/GG');
+	  grivious(event.source.groupId);
+  }
+	
     if(event.source.userId == 'U772f8750bbd469cb25d2a2b64925d78f' && !event.source.groupId)
        {
 	client.pushMessage(rssChannelId, event.message)
@@ -296,6 +303,10 @@ async function handleEvent(event) {
     }
 
     return sendMessage(message, event.replyToken);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function sendMessage(message, token) {
