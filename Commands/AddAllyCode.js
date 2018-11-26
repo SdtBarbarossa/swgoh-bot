@@ -3,6 +3,11 @@ const pushmessage = require('../Commands/Pushmessage');
 
 module.exports = async ( lineidNow, allycode, groupId ) => {
 	try {
+		
+		if(!lineidNow || lineidNow == ""){
+			throw new Error('your lineId seems to be emtpy. To fix this add me as a friend.');
+	} 
+		
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
 		
