@@ -53,8 +53,18 @@ async function handleEvent(event) {
 	
     if(event.message.text.toLowerCase() == "hello there" || event.message.text.toLowerCase() == "hello there!") {
         message = "General Kenobi!";
-	    //rssFeedStuff();
     }
+	
+    if(event.source.userId == 'U772f8750bbd469cb25d2a2b64925d78f' && !event.source.groupId)
+       {
+	client.pushMessage(rssChannelId, event.message)
+  	.then(() => {
+    	console.log('pushed');
+  	})
+  	.catch((err) => {
+	console.log(err.message);
+  	});
+       }
     
     if (event.message.text.startsWith("#")) {
         var words = event.message.text.split(" ");
