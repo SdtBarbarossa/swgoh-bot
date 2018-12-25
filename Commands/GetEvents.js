@@ -15,6 +15,8 @@ module.exports = async ( groupId ) => {
     };
     let events = await swapi.fetchEvents(payload);
     
+console.log("events", events);
+		
 events.events.sort(function(a, b) {
   return a.instanceList[0].startTime - b.instanceList[0].startTime;
 });
