@@ -19,7 +19,7 @@ events.result.events.sort(function(a, b) {
   return a.instanceList[0].startTime - b.instanceList[0].startTime;
 });
 		
-    for (var i = 0; i < events.events.length; i++) {
+    for (var i = 0; i < events.result.events.length; i++) {
         var date = new Date(events.result.events[i].instanceList[0].startTime);
         if (!events.result.events[i].id.includes('shipevent_') && !events.result.events[i].id.includes('restrictedmodbattle_') && !events.result.events[i].id.includes('challenge_') )
             message = message + "Event: " + events.result.events[i].nameKey.replace(/\[\/?[^\]]*\]/g, '').replace("\\n", " ") + "\nStart: " + date.format("dd.mm.yyyy HH:MM") + "UTC\n\n";
