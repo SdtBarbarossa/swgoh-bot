@@ -32,7 +32,9 @@ async function guildOverview(allycodeNow, charListNow){
 	"allycode" : allycodeNow,
         "language": "ENG_US"
     	};
-    	let guildNowFull = await swapi.fetchGuild(payload).result;
+    	let guildNowFull = await swapi.fetchGuild(payload);
+	guildNowFull = guildNowFull.result;
+		
     	let guildNow = guildNowFull[0];
 
 		if( !guildNow ) {
@@ -76,7 +78,8 @@ async function guildOverview(allycodeNow, charListNow){
 	"allycode" : allycodes,
         "language": "GER_DE"
     	};
-            units = await await swapi.fetchUnits(payloadUnits).result;
+            units = await await swapi.fetchUnits(payloadUnits);
+		units = units.result
             if( !units ) {             
 	            let error = new Error('Error fetching units from swgoh.help');
 	            error.code = 400;
