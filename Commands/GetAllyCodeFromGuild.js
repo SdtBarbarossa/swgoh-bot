@@ -20,7 +20,7 @@ module.exports = async ( groupId, membername ) => {
    };
    
    let guildNew = await swapi.fetchGuild(payload);
-   let guild = guildNew[0];
+   let guild = guildNew.result[0];
 		
    let memberNow = guild.roster.find(function(mem) {
             return mem.name.toLowerCase() == membername.toLowerCase();
