@@ -15,7 +15,8 @@ var payload = {
 		"allycode" : allyCodeNow,
         	"language": "ENG_US"
     		};
-let player = (await swapi.fetchPlayer(payload)).result[0];
+let player = (await swapi.fetchPlayer(payload));
+		player = player.result[0];
 		let answer = await getZeta(player, criteriaNow);
   pushmessage(groupId, answer);
 	} catch(e) {
@@ -35,7 +36,8 @@ async function getZeta(player, criteria){
     		};
 		
 		/** Get the zeta recommendations from swapi cacher */
-		let recommendations = await swapi.fetchAPI( swapi.zetas, payload ).result;
+		let recommendations = await swapi.fetchAPI( swapi.zetas, payload );
+		recommendations = recommendations.result;
 		
 		let today = new Date();
 		
