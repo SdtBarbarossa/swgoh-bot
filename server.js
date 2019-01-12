@@ -120,7 +120,7 @@ async function handleEvent(event) {
 			message = err.message;
 			};
 		break;
-		case "activateDevNotifications":
+		case "activatedevnotifications":
 			try{
 			const configData = require('./Commands/DevNotifications');
 			let allycode = configData(event.source.groupId , true, event.source.groupId );
@@ -129,7 +129,7 @@ async function handleEvent(event) {
 			message = err.message;
 			};
 		break;
-		case "deactivateDevNotifications":
+		case "deactivatedevnotifications":
 			try{
 			const configData = require('./Commands/DevNotifications');
 			let allycode = configData(event.source.groupId , false, event.source.groupId );
