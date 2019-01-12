@@ -18,6 +18,7 @@ module.exports = async ( groupId ) => {
     console.log('events', events);
 		
  events = events.result;
+    console.log('events', events);
     
     events.events.sort(function(a, b) {
     return a.instanceList[0].startTime - b.instanceList[0].startTime;
