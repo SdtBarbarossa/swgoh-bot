@@ -25,7 +25,8 @@ module.exports = async ( lineidNow, allycode, groupId ) => {
 		pushmessage(groupId, "added you to with allycode " + allycode);
 	}
 	else{
-		const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber} where lineId = ${lineidNow}`;
+		
+		const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber}, isGroupChannel = ${isGroupChannel} where lineId = ${lineidNow}`;
 		pushmessage(groupId, "Updated your allycode to " + allycode);
 	}
 	sql.close();
