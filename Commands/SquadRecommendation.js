@@ -24,7 +24,8 @@ async function getSquadRecommendations(criteria, phase){
 		
 	try{
 		let phaseAsNumber = Number(phase)-1;
-		let recommendations = await swapi.fetchSquads({}).result;
+		let recommendations = await swapi.fetchSquads({});
+		recommendations = recommendations.result;
     
 		//console.log('recommendations[sith].phase[0]',recommendations[criteria].phase[phaseAsNumber]);
 		
