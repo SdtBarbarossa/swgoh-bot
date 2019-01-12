@@ -13,7 +13,7 @@ module.exports = async ( groupId ) => {
     var payload = {
         "language": "ENG_US"
     };
-    let events = await swapi.fetchEvents(payload);
+    let events = await swapi.fetchEvents(payload).result;
     
     events.events.sort(function(a, b) {
     return a.instanceList[0].startTime - b.instanceList[0].startTime;
