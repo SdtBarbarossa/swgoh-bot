@@ -120,6 +120,24 @@ async function handleEvent(event) {
 			message = err.message;
 			};
 		break;
+		case "activateDevNotifications":
+			try{
+			const configData = require('./Commands/DevNotifications');
+			let allycode = configData(event.source.groupId , true, event.source.groupId );
+			}
+			catch(err){
+			message = err.message;
+			};
+		break;
+		case "deactivateDevNotifications":
+			try{
+			const configData = require('./Commands/DevNotifications');
+			let allycode = configData(event.source.groupId , false, event.source.groupId );
+			}
+			catch(err){
+			message = err.message;
+			};
+		break;
 		case "mods":
 			try{
 			let messageWithoutCommando = event.message.text.replace("#mods ","");
@@ -266,6 +284,8 @@ async function handleEvent(event) {
 			 	+ "\r\n #heist"
 			 	+ "\r\n #addme {allycode}"
 			 	+ "\r\n #addguild {allycode}"
+			 	+ "\r\n #activateDevNotifications"
+			 	+ "\r\n #deactivateDevNotifications"
 			 	+ "\r\n #zeta {criteria}"
 			 	+ "\r\n #allycode membername"
 			 	+ "\r\n #guild {allycode} #{chracter}"
@@ -281,6 +301,8 @@ async function handleEvent(event) {
 			 	+ "\r\n #heist"
 			 	+ "\r\n #addme {allycode}"
 			 	+ "\r\n #addguild {allycode}"
+			 	+ "\r\n #activateDevNotifications"
+			 	+ "\r\n #deactivateDevNotifications"
 			 	+ "\r\n #zeta {criteria}"
 			 	+ "\r\n #allycode membername"
 			 	+ "\r\n #guild {allycode} #{chracter}"
