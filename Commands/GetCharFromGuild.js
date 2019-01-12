@@ -34,7 +34,7 @@ async function findCharacter(allycodeNow, charListNow){
 	"allycode" : allycodeNow,
         "language": "ENG_US"
     	};
-    	let guildNowFull = await swapi.fetchGuild(payload);
+    	let guildNowFull = await swapi.fetchGuild(payload).result;
     	let guildNow = guildNowFull[0];
 
 		if( !guildNow ) {
@@ -65,7 +65,7 @@ async function findCharacter(allycodeNow, charListNow){
 	"allycode" : allycodes,
         "language": "ENG_US"
     	};
-            units = await swapi.fetchUnits(payloadUnits);
+            units = await swapi.fetchUnits(payloadUnits).result;
             if( !units ) {             
 	            let error = new Error('Error fetching units from swgoh.help');
 	            error.code = 400;
