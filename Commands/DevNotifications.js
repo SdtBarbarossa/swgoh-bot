@@ -25,7 +25,7 @@ module.exports = async ( lineidNow, devNotification, groupId ) => {
 	}
 	else{
 		
-		const resultUpdate = await sql.query`update lineidToAllycode set devNotification = ${devNotification} where lineId = ${lineidNow}`;
+		const resultUpdate = await sql.query`update lineidToAllycode set devNotifications = ${devNotification} where lineId = ${lineidNow}`;
 		
 		if(devNotification == true){
 		pushmessage(groupId, "devNotification turned on");			
