@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const pushmessage = require('../Commands/Pushmessage');
 
-module.exports = async ( lineidNow, allycode, groupId ) => {
+module.exports = async ( lineidNow, devNotification, groupId ) => {
 	try {
 		
 		if(!lineidNow || lineidNow == ""){
@@ -12,22 +12,27 @@ module.exports = async ( lineidNow, allycode, groupId ) => {
 	if(lineidNow == groupId){
 		isGroupChannel = true;
 	}
-		
-	let activateNotifications = false;
-		
+	
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
-		
-	let allycodeAsNumber = Number(allycode);
-	if(result.recordset.length == 0 )
+	
+	if(result.recordset.length == 0 && isGroupChannel == true)
 	{
-		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode, isGroupChannel, devNotifications) Values(${lineidNow},${allycodeAsNumber}, ${isGroupChannel},${activateNotifications})`;
-		pushmessage(groupId, "added you to with allycode " + allycode);
+		pushmessage(groupId, "We could not find a allycode associated with this groupchat.");
+	}
+	else if(isGroupChannel == false){
+		pushmessage(groupId, "This function is only available in groupchats.");	
 	}
 	else{
 		
-		const resultUpdate = await sql.query`update lineidToAllycode set allycode = ${allycodeAsNumber}, isGroupChannel = ${isGroupChannel} where lineId = ${lineidNow}`;
-		pushmessage(groupId, "Updated your allycode to " + allycode);
+		const resultUpdate = await sql.query`update lineidToAllycode set devNotification = ${devNotification} where lineId = ${lineidNow}`;
+		
+		if(devNotification == true){
+		pushmessage(groupId, "devNotification turned on");			
+		}
+		else{
+		pushmessage(groupId, "devNotification turned of");
+		}
 	}
 	sql.close();
 	} catch(e) {
