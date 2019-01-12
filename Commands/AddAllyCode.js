@@ -7,6 +7,13 @@ module.exports = async ( lineidNow, allycode, groupId ) => {
 		if(!lineidNow || lineidNow == ""){
 			throw new Error('your lineId seems to be emtpy. To fix this add me as a friend.');
 	} 
+	
+	let isGroupChannel = false;
+	if(lineidNow == groupId){
+		isGroupChannel = true;
+	}
+		
+	let activateNotifications = false;
 		
 	await sql.connect('mssql://linebotdb:Wk99lNRnQ~_y@den1.mssql7.gear.host/linebotdb');
         const result = await sql.query`select * from lineidToAllycode where lineId = ${lineidNow}`;
@@ -14,7 +21,7 @@ module.exports = async ( lineidNow, allycode, groupId ) => {
 	let allycodeAsNumber = Number(allycode);
 	if(result.recordset.length == 0 )
 	{
-		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode) Values(${lineidNow},${allycodeAsNumber})`;
+		const resultAdd = await sql.query`insert into lineidToAllycode(lineId, allycode, isGroupChannel, devNotifications) Values(${lineidNow},${allycodeAsNumber}, ${isGroupChannel},${activateNotifications})`;
 		pushmessage(groupId, "added you to with allycode " + allycode);
 	}
 	else{
