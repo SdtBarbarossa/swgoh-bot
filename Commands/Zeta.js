@@ -53,10 +53,8 @@ async function getZeta(player, criteria){
 		let available = player.roster.reduce((acc,c) => {
                         //Basic unit ranking
                         let zs = c.skills.filter(s => s.isZeta && s.tier < 8)
-			console.log('zs', zs);
                         zs.forEach( zz => {
-			console.log('zetas[0]', zetas[0]);
-                            let zrank = zetas.find(zr => zr.id === zz.id)
+                            let zrank = zetas.find(zr => zr.name === zz.nameKey)
                             if( zrank ) {
                                 let charRank = {
                                     name:c.nameKey,
