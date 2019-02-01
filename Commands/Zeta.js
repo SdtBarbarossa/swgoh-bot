@@ -42,7 +42,7 @@ async function getZeta(player, criteria){
 		
 		let today = new Date();
 		
-		message += `${player.name} - Next best Zetas`;
+		message += `${player.name} - Next best Zetas\n`;
 		
 	let criterias = [];
 		criterias.push(criteria);
