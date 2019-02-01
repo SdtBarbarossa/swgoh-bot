@@ -150,7 +150,7 @@ async function guildOverview(allycodeNow, charListNow){
                 value += 'Gear XI: '+u.filter(t => t.gearLevel === 11).length+'\n';
                 value += 'Gear X: '+u.filter(t => t.gearLevel === 10).length+'\n';
             } else {
-                value = 'None\n';
+                value = c + ': None\n';
             }
             
             value += '------------------------------\n'
@@ -169,7 +169,7 @@ async function guildOverview(allycodeNow, charListNow){
                 value += '★★★★★★☆: '+u.filter(t => t.starLevel === 6).length+'\n';
                 value += '★★★★★☆☆: '+u.filter(t => t.starLevel === 5).length+'\n';
             } else {
-                value = 'None\n';
+                value = s + ': None\n';
             }
             
             value += '------------------------------\n'
