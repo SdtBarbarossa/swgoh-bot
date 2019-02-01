@@ -91,7 +91,7 @@ async function getZeta(player, criteria){
                             r = ((available[i].level+available[i].rarity+available[i].gear)/3) - r;
                         
                         max = r > max ? r : max;
-                        message += (r/max).toFixed(1)+" : "+available[i].name+" : "+available[i].zeta.nameKey+"\n";
+                        message += available[i].name+": "+available[i].zeta.nameKey+"("+(r/max).toFixed(1)+")\n";
                     }
 		
 		message += '------------------------------\n';
