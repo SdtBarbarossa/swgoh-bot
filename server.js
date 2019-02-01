@@ -57,7 +57,7 @@ async function handleEvent(event) {
 	
    let ran = getRandomInt(100);
 	
-  if(ran && ran >95){
+  if(ran && ran >95 && event.source.groupId == rssChannelId){
 	  const grivious = require('./Commands/GG');
 	  grivious(event.source.groupId);
   }
@@ -251,7 +251,7 @@ async function handleEvent(event) {
 		let messageWithoutCommando = event.message.text.replace("#zeta ","");
 		//to-do
 		let criteria = "";
-        	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(messageWithoutCommando) ? messageWithoutCommando : 'versa';
+        	criteria = ["pvp", "tw", "tb", "pit", "tank", "sith"].includes(messageWithoutCommando) ? messageWithoutCommando : 'sith';
 		
 		const zeta = require('./Commands/Zeta');
 		let allycode = zeta(event.source.userId , event.source.groupId, criteria );
