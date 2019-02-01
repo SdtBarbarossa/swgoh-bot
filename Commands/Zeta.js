@@ -49,6 +49,30 @@ async function getZeta(player, criteria){
 		
 	    let availableZetas = [];
 		
+		let available = player.characters.reduce((acc,c) => {
+                        //Basic unit ranking
+                        let zs = c.skills.filter(s => s.isZeta && s.tier < 8)
+                        zs.forEach( zz => {
+                            let zrank = zetas.find(zr => zr.id === zz.id)
+                            if( zrank ) {
+                                let charRank = {
+                                    name:c.nameKey,
+                                    level:(c.level/85),
+                                    rarity:(c.rarity/7),
+                                    gear:(((c.gear*6)+c.equipped.length)/(13*6)),
+                                    zeta:zz,
+                                    ranks:flags.map(f => {
+                                        return (zrank[f]/10)
+                                    })
+                                }
+                                acc.push( charRank )
+                            }
+                        })
+                        return acc
+                    },[]);
+		
+		console.log('available', available);
+		
         for( let z of recommendations.zetas ) {
 				
             let skill = player.roster.map(u => {
