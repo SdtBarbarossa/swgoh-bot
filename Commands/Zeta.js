@@ -62,9 +62,7 @@ async function getZeta(player, criteria){
                                     rarity:(c.rarity/7),
                                     gear:(((c.gear*6)+c.equipped.length)/(13*6)),
                                     zeta:zz,
-                                    ranks:flags.map(f => {
-                                        return (zrank[f]/10)
-                                    })
+                                    ranks:(zrank[criteria]/10)
                                 }
                                 acc.push( charRank )
                             }
