@@ -62,13 +62,9 @@ async function guildOverview(allycodeNow, charListNow){
             "DARTHTRAYA",
             "JEDIKNIGHTREVAN",
             "BASTILASHAN",
-            "JOLEEBINDO",
             "KYLORENUNMASKED",
             "BASTILASHANDARK",
-            "ENFYSNEST",
-            "QIRA",
-            "BOSSK",
-            "CHEWBACCALEGENDARY"
+            "ENFYSNEST"
         	];
 		
 		for(let char of charListNow){
@@ -76,8 +72,7 @@ async function guildOverview(allycodeNow, charListNow){
 		}
         let shipList = [
 		"MILLENNIUMFALCON",
-		"HOUNDSTOOTH",
-    		"JEDISTARFIGHTERANAKIN"		
+		"HOUNDSTOOTH"	
 	];
                
         let coi = [];
