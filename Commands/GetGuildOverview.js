@@ -58,11 +58,27 @@ async function guildOverview(allycodeNow, charListNow){
         
 	//ROSTER CALC
 
-        let charList = ["BASTILASHAN", "ENFYSNEST", "DARTHTRAYA"];
+        let charList = [
+            "KYLORENUNMASKED",
+            "BASTILASHAN",
+            "JEDIKNIGHTREVAN",
+            "BASTILASHANDARK",
+            "ENFYSNEST",
+            "DARTHTRAYA",
+            "QIRA",
+            "BOSSK",
+            "CHEWBACCALEGENDARY",
+            "JOLEEBINDO"
+        	];
+		
 		for(let char of charListNow){
 			charList.push(char);
 		}
-        let shipList = ["HOUNDSTOOTH"];
+        let shipList = [
+		"HOUNDSTOOTH",
+    		"JEDISTARFIGHTERANAKIN",
+		"MILLENNIUMFALCON"
+	];
                
         let coi = [];
         
