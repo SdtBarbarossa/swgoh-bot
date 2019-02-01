@@ -70,7 +70,32 @@ async function getZeta(player, criteria){
                         return acc
                     },[]);
 		
-		console.log('available', available);
+		//console.log('available', available);
+		
+		available.sort((a,b) => {
+                        let arank = (a.ranks.reduce((sum,r) => { return sum + r },0) / a.ranks.length)
+                            arank = ((a.level+a.rarity+a.gear)/3) - arank
+                        let brank = (b.ranks.reduce((sum,r) => { return sum + r },0) / b.ranks.length)
+                            brank = ((b.level+b.rarity+b.gear)/3) - brank
+                        return brank - arank
+                    })
+		
+		message += "Unit ranked by: level, rarity, gear\n"
+                message += "Zeta scored against: " +criteria+" \n";
+                message += "`------------------------------`\n"
+		
+		let max = 0
+                    for( let i = 0; i < 20; i++ ) {
+                        if( !available[i] ) { break }
+                        let r = (available[i].ranks.reduce((sum,r) => { return sum + r },0) / available[i].ranks.length);
+                            r = ((available[i].level+available[i].rarity+available[i].gear)/3) - r;
+                        
+                        max = r > max ? r : max;
+                        message += (r/max).toFixed(1)+" : "+available[i].name+" : "+available[i].zeta.nameKey+"\n";
+                    }
+		
+		message += '------------------------------\n';
+		message += 'Optional filter criteria :\n pvp, tw, tb, pit, tank, sith, versa\n';
 		
         for( let z of recommendations.zetas ) {
 				
