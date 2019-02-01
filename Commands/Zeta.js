@@ -47,7 +47,8 @@ async function getZeta(player, criteria){
 		message += criteria ? ' Filtered by : '+criteria+' \n' : '';
 		message += '\n------------------------------\n';
 		
-		
+	let criterias = [];
+		criterias.push(criteria);
 	    let availableZetas = [];
 		
 		let available = player.roster.reduce((acc,c) => {
@@ -62,7 +63,9 @@ async function getZeta(player, criteria){
                                     rarity:(c.rarity/7),
                                     gear:(((c.gear*6)+c.equipped.length)/(13*6)),
                                     zeta:zz,
-                                    ranks:(zrank[criteria]/10)
+                                    ranks:criterias.map(f => {
+                                        return (zrank[f]/10)
+                                    })
                                 }
                                 acc.push( charRank )
                             }
