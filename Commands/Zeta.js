@@ -49,7 +49,7 @@ async function getZeta(player, criteria){
 		
 	    let availableZetas = [];
 		
-		let available = player.characters.reduce((acc,c) => {
+		let available = player.roster.reduce((acc,c) => {
                         //Basic unit ranking
                         let zs = c.skills.filter(s => s.isZeta && s.tier < 8)
                         zs.forEach( zz => {
