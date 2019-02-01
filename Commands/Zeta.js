@@ -37,8 +37,8 @@ async function getZeta(player, criteria){
 		
 		/** Get the zeta recommendations from swapi cacher */
 		let recommendations = await swapi.fetchAPI( swapi.zetas, payload );
-		console.log('recommendations.result', recommendations.result);
                 const zetas = recommendations.result.zetas;
+		console.log('zetas', zetas);
 		recommendations = recommendations.result;
 		
 		let today = new Date();
