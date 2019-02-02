@@ -13,7 +13,7 @@ const googleAuth = require('../Commands/auth');
 
 const SPREADSHEET_ID = '1b3zv_jMmec8AjHFHulWLz3iOvc-UW_EYLFchZwfJFzI';
 
-module.exports = async ( lineidNow, groupId, criteriaNow ) => {
+module.exports = async ( lineidNow, groupId) => {
 	try {
   let allyCodeNow = await getAllyCode( lineidNow, groupId );
 		
