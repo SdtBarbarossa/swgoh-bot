@@ -100,6 +100,15 @@ async function handleEvent(event) {
                     message = err.message;
                 }
                 break;
+            case "spunkte":
+                try {
+		    const spunkte = require('./Commands/Spunkte');
+		    let allycode = spunkte(event.source.userId , event.source.groupId);
+                }
+                catch (err) {
+                    message = err.message;
+                }
+                break;
 		case "addme":
 			try{
 			let messageWithoutCommando = event.message.text.replace("#addme ","");
