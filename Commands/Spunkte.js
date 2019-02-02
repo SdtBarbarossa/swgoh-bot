@@ -45,7 +45,7 @@ let player = (await swapi.fetchPlayer(payload));
 		if(findPlayerRow != null){
 		messageToSend += "Nicht in Liste gefunden!";
 		}else{
-		for( var i = 1; i < 13; i=i+3; ){
+		for( var i = 1; i < 13; i=i+3 ){
 		if(findPlayerRow[i] != "")
 		messageToSend += "Datum: " + findPlayerRow[i] + " Punkte: " + findPlayerRow[i+1] + " Vergehen : " + findPlayerRow[i+2] + "\n";
 		}
