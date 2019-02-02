@@ -1,4 +1,4 @@
-const GoogleAuth = require('google-auth-library');
+const {GoogleAuth} = require('google-auth-library');
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 
