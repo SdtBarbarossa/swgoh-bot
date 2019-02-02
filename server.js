@@ -111,7 +111,7 @@ async function handleEvent(event) {
                 break;
             case "spunkteall":
                 try {
-		    if(event.source.userId == 'U772f8750bbd469cb25d2a2b64925d78f')
+		    if(event.source.userId == 'U772f8750bbd469cb25d2a2b64925d78f' || event.source.userId == 'U9a88ae364b5103fd0cec37efdb54f9e0')
 		    {
 		    const spunkteAll = require('./Commands/spunkteAll');
 		    let allycode = spunkteAll(event.source.userId , event.source.groupId);
