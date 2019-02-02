@@ -45,12 +45,21 @@ let player = (await swapi.fetchPlayer(payload));
 		if(findPlayerRow != null){
 		messageToSend += "Nicht in Liste gefunden!";
 		}else{
+		var keinVergehen = true;
+			
 		for( var i = 1; i < 13; i=i+3 ){
-		if(findPlayerRow[i] != "")
+			
+		if(findPlayerRow[i] != ""){
 		messageToSend += "Datum: " + findPlayerRow[i] + " Punkte: " + findPlayerRow[i+1] + " Vergehen : " + findPlayerRow[i+2] + "\n";
+		keinVergehen = false;
 		}
 		}
-    	    pushmessage(groupId, "findPlayerRow: " + findPlayerRow);
+		if(keinVergehen == true){
+		messageToSend += "Kein vergehen. Weiter so! :-)";	
+		}
+			
+		}
+    	    pushmessage(groupId, messageToSend);
         });
     })
     .catch((err) => {
