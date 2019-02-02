@@ -7,7 +7,7 @@ const swapi = new ApiSwgohHelp({
     "password": process.env.API_PASSWORD
 });
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const sheetsApi = google.sheets('v4');
 const googleAuth = require('../Commands/auth');
 
