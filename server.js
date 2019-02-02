@@ -109,6 +109,21 @@ async function handleEvent(event) {
                     message = err.message;
                 }
                 break;
+            case "spunkteall":
+                try {
+		    if(event.source.userId == 'U772f8750bbd469cb25d2a2b64925d78f')
+		    {
+		    const spunkteAll = require('./Commands/spunkteAll');
+		    let allycode = spunkteAll(event.source.userId , event.source.groupId);
+		    }
+		else{
+			message = "Diese Funktion steht dir leider nicht zur verfügung.";
+		}
+                }
+                catch (err) {
+                    message = err.message;
+                }
+                break;
 		case "addme":
 			try{
 			let messageWithoutCommando = event.message.text.replace("#addme ","");
