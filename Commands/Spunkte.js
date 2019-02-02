@@ -47,6 +47,7 @@ let player = (await swapi.fetchPlayer(payload));
     });
 		
 	} catch(e) {
+    		pushmessage(e.message);
   		console.log(e.message);
 	}
 
