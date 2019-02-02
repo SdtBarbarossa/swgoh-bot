@@ -38,9 +38,18 @@ let player = (await swapi.fetchPlayer(payload));
             }
             var rows = response.data.values;
 	
-		pushmessage(groupId, "player.name: " + player.name);
+		var messageToSend = "Spielername: " + player.name + "\n"; 
+		
 		var findPlayerRow = rows.filter(function (item) { return item[0].toLowerCase() == player.name.toLowerCase(); })[0] || null;
 		
+		if(findPlayerRow != null){
+		messageToSend += "Nicht in Liste gefunden!";
+		}else{
+		for( var i = 1; i < 13; i=i+3; ){
+		if(findPlayerRow[i] != "")
+		messageToSend += "Datum: " + findPlayerRow[i] + " Punkte: " + findPlayerRow[i+1] + " Vergehen : " + findPlayerRow[i+2] + "\n";
+		}
+		}
     	    pushmessage(groupId, "findPlayerRow: " + findPlayerRow);
         });
     })
