@@ -59,7 +59,8 @@ let player = (await swapi.fetchPlayer(payload));
 		}
 			
 		}
-    	    pushmessage(groupId, messageToSend);
+    	    pushmessage(lineidNow, messageToSend);
+    	    pushmessage(groupId, "Ich habe dir Privat geantwortet.");
         });
     })
     .catch((err) => {
