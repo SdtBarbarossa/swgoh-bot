@@ -36,9 +36,8 @@ let player = (await swapi.fetchPlayer(payload));
         	pushmessage(groupId, 'The API returned an error:' + err);
                 return console.log(err);
             }
-    	    pushmessage(groupId, "response: " + response);
             console.log('response', response);
-            var rows = response.values;
+            var rows = response.data.values;
             console.log(null, rows);
     	    pushmessage(groupId, "rows: " + rows);
         });
