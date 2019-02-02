@@ -33,6 +33,7 @@ module.exports = async ( lineidNow, groupId) => {
 		var messageToSend = "Zusammenfassung: \n";
 		
 		rows.forEach(function(element) {
+		if(element[0] != "Name"){
 		var messageToSendTemp = "-----------\nSpieler: " + element[0] + "\n";
 		var keinVergehen = true;
 		for( var i = 1; i < 13; i=i+3 ){			
@@ -45,6 +46,7 @@ module.exports = async ( lineidNow, groupId) => {
 		if(keinVergehen != true){	
 			messageToSend += messageToSendTemp;
 		}	
+		}
 		});
 		
     	    pushmessage(lineidNow, messageToSend);
