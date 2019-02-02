@@ -11,6 +11,8 @@
     "express": "^4.16.3",
     "api-swgoh-help": "^3.1.4",
     "x-date": "^1.0.2",
-    "mssql": "^4.2.3"
+    "mssql": "^4.2.3",
+    "google-auth-library": "^3.0.1",
+    "googleapis": "^37.1.0"
   }
 }
