@@ -36,10 +36,12 @@ let player = (await swapi.fetchPlayer(payload));
         	pushmessage(groupId, 'The API returned an error:' + err);
                 return console.log(err);
             }
-            console.log('response', response);
             var rows = response.data.values;
-            console.log(null, rows);
-    	    pushmessage(groupId, "rows: " + rows);
+	
+		pushmessage(groupId, "player.name: " + player.name);
+		var findPlayerRow = rows.filter(function (item) { return item[0].toLowerCase() == player.name.toLowerCase(); })[0] || null;
+		
+    	    pushmessage(groupId, "findPlayerRow: " + findPlayerRow);
         });
     })
     .catch((err) => {
