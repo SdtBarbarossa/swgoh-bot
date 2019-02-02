@@ -42,7 +42,7 @@ let player = (await swapi.fetchPlayer(payload));
 		
 		var findPlayerRow = rows.filter(function (item) { return item[0].toLowerCase() == player.name.toLowerCase(); })[0] || null;
 		
-		if(findPlayerRow != null){
+		if(findPlayerRow == null){
 		messageToSend += "Nicht in Liste gefunden!";
 		}else{
 		var keinVergehen = true;
