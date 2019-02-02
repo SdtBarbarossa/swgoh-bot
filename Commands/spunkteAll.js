@@ -47,7 +47,8 @@ module.exports = async ( lineidNow, groupId) => {
 		}	
 		});
 		
-    	    pushmessage(groupId, messageToSend);
+    	    pushmessage(lineidNow, messageToSend);
+    	    pushmessage(groupId, "Ich habe dir privat geantwortet.");
         });
     })
     .catch((err) => {
