@@ -15,15 +15,7 @@ const SPREADSHEET_ID = '1b3zv_jMmec8AjHFHulWLz3iOvc-UW_EYLFchZwfJFzI';
 
 module.exports = async ( lineidNow, groupId) => {
 	try {
-  let allyCodeNow = await getAllyCode( lineidNow, groupId );
-		
-var payload = {
-		"allycode" : allyCodeNow,
-        	"language": "ENG_US"
-    		};
-let player = (await swapi.fetchPlayer(payload));
-		player = player.result[0];
-		
+
 		googleAuth.authorize()
     .then((auth) => {
         sheetsApi.spreadsheets.values.get({
@@ -37,30 +29,25 @@ let player = (await swapi.fetchPlayer(payload));
                 return console.log(err);
             }
             var rows = response.data.values;
-	
-		var messageToSend = "Spielername: " + player.name + "\n"; 
 		
-		var findPlayerRow = rows.filter(function (item) { return item[0].toLowerCase() == player.name.toLowerCase(); })[0] || null;
+		var messageToSend = "Zusammenfassung: \n";
 		
-		if(findPlayerRow == null){
-		messageToSend += "Nicht in Liste gefunden!";
-		}else{
+		rows.forEach(function(element) {
+		var messageToSendTemp = "-----------\nSpieler: " + element[0] + "\n";
 		var keinVergehen = true;
-			
-		for( var i = 1; i < 13; i=i+3 ){
-			
-		if(findPlayerRow[i] != ""){
-		messageToSend += "Datum: " + findPlayerRow[i] + " Punkte: " + findPlayerRow[i+1] + " Vergehen : " + findPlayerRow[i+2] + "\n";
+		for( var i = 1; i < 13; i=i+3 ){			
+		if(element[i] != ""){
+		messageToSendTemp += "Datum: " + element[i] + " Punkte: " + element[i+1] + " Vergehen : " + element[i+2] + "\n";
 		keinVergehen = false;
 		}
 		}
-		if(keinVergehen == true){
-		messageToSend += "Kein vergehen. Weiter so! :-)";	
-		}
 			
-		}
-    	    pushmessage(lineidNow, messageToSend);
-    	    pushmessage(groupId, "Ich habe dir Privat geantwortet.");
+		if(keinVergehen != true){	
+			messageToSend += messageToSendTemp;
+		}	
+		});
+		
+    	    pushmessage(groupId, messageToSend);
         });
     })
     .catch((err) => {
