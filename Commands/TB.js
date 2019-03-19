@@ -21,8 +21,8 @@ module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
     .then((auth) => {
         sheetsApi.spreadsheets.values.get({
             auth: auth,
-            spreadsheetId: SPREADSHEET_ID,
-            range: "'Sheet1'!A2:F56",
+            spreadsheetId: lstb ? SPREADSHEET_ID_LS : SPREADSHEET_ID_DS,
+            range: "'Phase " + tbphase + "'!A2:F56",
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
