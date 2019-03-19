@@ -41,7 +41,10 @@ module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
           		(
           		unit => 
             			{ 
-	      			counts[unit] = counts[unit] ? counts[unit] + 1 : 1;
+					if(unit.indexOf("Top ") < 0 && unit.indexOf("Middle ") < 0 && unit.indexOf("Bottom ") < 0)
+				   	{
+	      				counts[unit] = counts[unit] ? counts[unit] + 1 : 1;
+				   	}
 				}
 			);
             }
