@@ -302,6 +302,23 @@ async function handleEvent(event) {
 				message = err.message;
 			}		
             break;
+						
+            case "lstb":
+			try{
+		let messageWithoutCommando = event.message.text.replace("#lstb ","");
+		
+		if(messageWithoutCommando.length == 0){
+		   message = "please give me a criteria. for e.g. #squads sith 1";
+		   }
+		else{
+		const tb = require('./Commands/TB');
+		tb(event.source.userId , event.source.groupId, messageWithoutCommando);
+		}
+			}
+		catch(err){
+				message = err.message;
+			}		
+            break;
 		case "help":
 			message = "Available commands: "
 			 	+ "\r\n #events"
