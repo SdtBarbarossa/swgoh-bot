@@ -30,17 +30,20 @@ module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
                 return console.log(err);
             }
           var rows = response.data.values;
-	
-		      var messageToSend = "TB: " + "\n";
+	  var counts = {};
+	  var messageToSend = "TB: " + "\n";
     
           rows.forEach
           (
           unit => 
-            {  
-              messageToSend += unit + "\n";
+            { 
+	      counts[unit] = counts[unit] ? counts[unit] + 1 : 1;
             }
           );
     
+		messageToSend += counts;
+	console.log(counts);
+		
     	    pushmessage(lineidNow, messageToSend);
     	    pushmessage(groupId, "Ich habe dir Privat geantwortet.");
         });
