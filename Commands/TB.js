@@ -50,7 +50,11 @@ module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
             }
           );
     
-		messageToSend += counts;
+		
+	for (var key in counts) {
+		messageToSend += key + " " + counts[key] + "\n";
+		}
+		
 	console.log(counts);
 		
     	    pushmessage(lineidNow, messageToSend);
