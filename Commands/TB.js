@@ -35,9 +35,15 @@ module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
     
           rows.forEach
           (
-          unit => 
+          row => 
             { 
-	      counts[unit] = counts[unit] ? counts[unit] + 1 : 1;
+	  	row.forEach
+          		(
+          		unit => 
+            			{ 
+	      			counts[unit] = counts[unit] ? counts[unit] + 1 : 1;
+				}
+			);
             }
           );
     
