@@ -14,7 +14,7 @@ const googleAuth = require('../Commands/auth');
 const SPREADSHEET_ID_DS = '1czv7K2k7uPdnFS2wiTjMkmVmLPAxpcWK3NGrTPq3K7k';
 const SPREADSHEET_ID_LS = '1zDUWLAY2COd1eoyrw9jlgiizF3IMk1Ay58ugq8vt-MY';
 
-module.exports = async ( lineidNow, groupId) => {
+module.exports = async ( lineidNow, groupId, tbphase, lstb) => {
 	try {
   
 		googleAuth.authorize()
