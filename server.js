@@ -55,7 +55,6 @@ app.post('/echobase', function(req,res) {
 	res.send({status: 200});
 	
 	var discordMessage = req.body.embeds;
-    	console.log('discordMessage', discordMessage);
 	
 	var lineMessage = "";
 	
@@ -64,10 +63,15 @@ app.post('/echobase', function(req,res) {
 	discordMessage.forEach(function(element) {
   	
 		lineMessage += element.description + "\n";
+		
+		
+	if(element.fields != null){
+		
 		element.fields.forEach(function(fieldNow) {
-		console.log("fieldNow", fieldNow);	
 			lineMessage += fieldNow.name + fieldNow.value;
 		});
+		
+	}
 		
 	});
 		
