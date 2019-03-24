@@ -19,11 +19,19 @@ let pmessage = {
 		
 if(message.length > 1900){
 	console.log("The Message is very long. Look at this: " + message.length);
-	var splitMessages = splitNChars(message, 1900);
-	let pmessage = {
+	var splitMessages = splitNChars(message, 1000);
+	
+	splitMessages.forEach(function(element)
+			      {
+	let plmessage = {
   		type: 'text',
-  		text: splitMessages
+  		text: element
 		};
+		
+	client.pushMessage(destinationId, plmessage);
+	});
+	
+	return;
 }
 	
 client.pushMessage(destinationId, pmessage)
