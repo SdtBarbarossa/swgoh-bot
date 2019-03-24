@@ -59,14 +59,19 @@ app.post('/echobase', function(req,res) {
 	
 	var lineMessage = "";
 	
+	if(discordMessage != null){
+	
 	discordMessage.forEach(function(element) {
   	
 		lineMessage += element.description + "\n";
 		element.fields.forEach(function(fieldNow) {
-		console.log("fieldNow", fieldNow);			
+		console.log("fieldNow", fieldNow);	
+			lineMessage += fieldNow.name + fieldNow.value;
 		});
 		
 	});
+		
+	}
 	
     	console.log('lineMessage', lineMessage);	
 	
