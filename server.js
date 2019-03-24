@@ -54,7 +54,21 @@ app.post('/echobase', function(req,res) {
     	console.log('Webhook recieved!');
 	res.send({status: 200});
 	
-    	console.log('req.body', req.body);
+	var discordMessage = req.body.embeds;
+    	console.log('discordMessage', discordMessage);
+	
+	var lineMessage = "";
+	
+	discordMessage.forEach(function(element) {
+  	
+		lineMessage += element.description + "\n";
+		element.fields.forEach(function(fieldNow) {
+		console.log("fieldNow", fieldNow);			
+		});
+		
+	});
+	
+    	console.log('lineMessage', lineMessage);	
 	
 });
 
