@@ -62,7 +62,7 @@ app.post('/echobase', jsonParser, function(req,res) {
 	var discordMessage = req.body;
 	
 	var lineMessage = "";
-	lineMessage += discordMessage.content.replaceAll("\t\t\t\t\t", "\n").replaceAll("`", "").replaceAll(":white_check_mark:","✔").replaceAll(":x:","❌").replace(":busts_in_silhouette:","Char").replace(":rocket:","Fleet").replace(":information_source:","");
+	lineMessage += discordMessage.content.replaceAll("\t\t\t\t\t", "\n").replaceAll("`", "").replaceAll(":white_check_mark:","✔").replaceAll(":x:","❌").replaceAll(":busts_in_silhouette:","Char").replace(":rocket:","Fleet").replace(":information_source:","");
     	console.log('lineMessage', lineMessage);	
 	PushmessageLine(rssChannelId, lineMessage);
 });
