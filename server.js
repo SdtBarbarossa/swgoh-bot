@@ -32,7 +32,7 @@ const client = new line.Client(config);
 const app = express();
 
 // create application/json parser
-var jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json()
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
@@ -53,6 +53,7 @@ app.post('/echobase', jsonParser, function(req,res) {
     	console.log('Webhook recieved!');
 	res.send({status: 200});
 	
+	console.log("req.body", req.body);
 	var discordMessage = req.body.embeds;
 	
 	var lineMessage = "";
