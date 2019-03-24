@@ -31,10 +31,8 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
+// create application/json parser
+var jsonParser = bodyParser.json()
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
@@ -50,7 +48,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 // this is for echobase
-app.post('/echobase', function(req,res) {
+app.post('/echobase', jsonParser, function(req,res) {
 	
     	console.log('Webhook recieved!');
 	res.send({status: 200});
