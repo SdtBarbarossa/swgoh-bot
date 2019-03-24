@@ -64,7 +64,7 @@ app.post('/echobase', jsonParser, function(req,res) {
 	var lineMessage = "";
 	lineMessage += discordMessage.content.replaceAll("*", " ").replaceAll("\t\t\t\t\t", "\n").replaceAll("`", "");
     	console.log('lineMessage', lineMessage);	
-	//PushmessageLine(rssChannelId, lineMessage);
+	PushmessageLine(rssChannelId, lineMessage);
 });
 
 // event handler
