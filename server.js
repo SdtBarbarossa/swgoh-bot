@@ -54,32 +54,10 @@ app.post('/echobase', jsonParser, function(req,res) {
 	res.send({status: 200});
 	
 	console.log("req.body", req.body);
-	var discordMessage = req.body.embeds;
+	var discordMessage = req.body;
 	
 	var lineMessage = "";
-	
-	if(discordMessage != null){
-	
-	discordMessage.forEach(function(element) {
-  	
-		lineMessage += element.description + "\n";
-		
-		
-	if(element.fields != null){
-		
-		element.fields.forEach(function(fieldNow) {
-			lineMessage += fieldNow.name + fieldNow.value;
-		});
-		
-	}
-	else{
-		console.log("element", element);	
-	}
-		
-	});
-		
-	}
-	
+	lineMessage += discordMessage.content.replace("*", " ");
     	console.log('lineMessage', lineMessage);	
 	//PushmessageLine(rssChannelId, lineMessage);
 });
