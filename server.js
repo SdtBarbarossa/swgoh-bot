@@ -40,6 +40,23 @@ app.post('/callback', line.middleware(config), (req, res) => {
         });
 });
 
+// this is for echobase
+app.post('/echobase', function(req,res) {
+    console.log('Bitbucket webhook recieved!');
+    res.json({message: 'Message recieved by Bitbot.'});
+    // console.log(req.body);
+    // Turn the response into something easier to work with.
+    let message = {
+        'username': req.body.actor.username,
+        'display_name': req.body.actor.display_name,
+        'repo': req.body.repository.name,
+        'hash': req.body.push.changes[0].commits[0].hash,
+        'commit': req.body.push.changes[0].commits[0].message,
+        'link': req.body.push.changes[0].links.html.href
+    };
+    console.log(message);
+});
+
 // event handler
 async function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
