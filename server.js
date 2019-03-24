@@ -2,6 +2,7 @@
 
 
 const bodyParser = require('body-parser');
+const PushmessageLine = require('./Commands/Pushmessage');
 
 const line = require('@line/bot-sdk');
 const express = require('express');
@@ -81,7 +82,7 @@ app.post('/echobase', function(req,res) {
 	}
 	
     	console.log('lineMessage', lineMessage);	
-	client.pushMessage(rssChannelId, lineMessage);
+	PushmessageLine(rssChannelId, lineMessage);
 });
 
 // event handler
