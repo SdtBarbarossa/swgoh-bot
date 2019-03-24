@@ -81,7 +81,7 @@ app.post('/echobase', function(req,res) {
 	}
 	
     	console.log('lineMessage', lineMessage);	
-	
+	client.pushMessage(rssChannelId, lineMessage);
 });
 
 // event handler
