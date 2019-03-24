@@ -42,9 +42,11 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 // this is for echobase
 app.post('/echobase', function(req,res) {
-    console.log('Webhook recieved!');
-    console.log('req', req);
-    res.json({message: 'Message recieved!.'});
+	
+    	console.log('Webhook recieved!');
+    	console.log('req', req);
+	res.send({status: 200}
+	
 });
 
 // event handler
