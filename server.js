@@ -46,7 +46,7 @@ app.post('/echobase', function(req,res) {
     	console.log('Webhook recieved!');
 	res.send({status: 200});
 	
-    	console.log('req.body', req.body);
+    	console.log('req', req);
 	
 });
 
