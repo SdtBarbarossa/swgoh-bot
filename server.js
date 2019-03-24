@@ -44,8 +44,9 @@ app.post('/callback', line.middleware(config), (req, res) => {
 app.post('/echobase', function(req,res) {
 	
     	console.log('Webhook recieved!');
+	res.send({status: 200});
+	
     	console.log('req', req);
-	res.send({status: 200}
 	
 });
 
