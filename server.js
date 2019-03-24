@@ -34,6 +34,11 @@ const app = express();
 // create application/json parser
 const jsonParser = bodyParser.json()
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -57,7 +62,7 @@ app.post('/echobase', jsonParser, function(req,res) {
 	var discordMessage = req.body;
 	
 	var lineMessage = "";
-	lineMessage += discordMessage.content.replace("*", " ");
+	lineMessage += discordMessage.content.replaceAll("*", " ").replaceAll("\t\t\t\t\t", "\n").replaceAll("`", "");
     	console.log('lineMessage', lineMessage);	
 	//PushmessageLine(rssChannelId, lineMessage);
 });
