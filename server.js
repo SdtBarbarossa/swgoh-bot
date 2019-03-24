@@ -1,5 +1,8 @@
 'use strict';
 
+
+const bodyParser = require('body-parser');
+
 const line = require('@line/bot-sdk');
 const express = require('express');
 let guild = null;
@@ -27,6 +30,11 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
+
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -46,7 +54,7 @@ app.post('/echobase', function(req,res) {
     	console.log('Webhook recieved!');
 	res.send({status: 200});
 	
-    	console.log('req', req);
+    	console.log('req.body', req.body);
 	
 });
 
