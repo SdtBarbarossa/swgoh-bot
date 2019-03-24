@@ -72,6 +72,9 @@ app.post('/echobase', function(req,res) {
 		});
 		
 	}
+	else{
+		console.log("element", element);	
+	}
 		
 	});
 		
