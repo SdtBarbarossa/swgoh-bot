@@ -61,10 +61,11 @@ async function guildOverview(allycodeNow, charListNow){
         let charList = [
             "DARTHTRAYA",
             "JEDIKNIGHTREVAN",
+	    "DARTHREVAN",
+            "DARTHMALAK",
             "BASTILASHAN",
-            "KYLORENUNMASKED",
             "BASTILASHANDARK",
-            "ENFYSNEST"
+            "C3POLEGENDARY"
         	];
 		
 		for(let char of charListNow){
